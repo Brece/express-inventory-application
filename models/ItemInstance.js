@@ -8,7 +8,7 @@ const ItemInstanceSchema = new Schema({
     item: { type: Schema.Types.ObjectId, ref: 'Item', required: true },
 });
 
-// virtual brand url
+// virtual item instance url
 ItemInstanceSchema
     .virtual('url')
     .get(function() {

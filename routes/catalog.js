@@ -7,7 +7,8 @@ const item_controller = require('../controllers/itemController');
 const iteminstance_controller = require('../controllers/iteminstanceController');
 const brand_controller = require('../controllers/brandController');
 
-// TODO: add services that handles rendering view templates
+// homepage
+router.get('/', category_controller.index);
 
 // API
 // category

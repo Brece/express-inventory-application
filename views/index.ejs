@@ -1,3 +1,18 @@
-<%- contentFor('index') %>
-<h1><%= title %></h1>
-<p>xxx</p>
+<%- include('partials/_header') %> 
+
+<div class="o-wrap c-category">
+    <h1><%= title %></h1>
+    
+    <% if (category_list.length > 0) { -%>
+        <ul>
+            <% category_list.forEach(function (category) { -%>
+                <li>
+                    <span><%= category.name %></span>
+                    <span><%= category.item_count %></span>
+                </li>
+            <% }) %> 
+        </ul>
+    <% } -%>
+</div>
+
+<%- include('partials/_footer') %> 

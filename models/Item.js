@@ -9,7 +9,7 @@ const ItemSchema = new Schema({
     category: [{ type: Schema.Types.ObjectId, ref: 'Category', required: true }]
 });
 
-// virtual brand url
+// virtual item url
 ItemSchema
     .virtual('url')
     .get(function() {
