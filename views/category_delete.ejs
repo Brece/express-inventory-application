@@ -6,6 +6,11 @@
     <div>
         <h2><%= category.name %></h2>
         <p><%= category.description %></p>
+        
+        <form action="" method="POST">
+            <input type="hidden" name="categoryid" value=<%= category._id %>>
+            <button type="submit">Delete</button>
+        </form>
     </div>
 
     <% if (category_items.length > 0) { -%>

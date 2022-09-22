@@ -166,7 +166,42 @@ exports.category_delete_get = (req, res, next) => {
 }
 
 exports.category_delete_post = (req, res, next) => {
-    res.send('xxx');
+    // firts we validate that an id has been provided; sent via the body parameters (HTML input name), rather than usind the version in the URL
+    async.parallel(
+        {
+            category(callback) {
+                Category.findById(req.body.categoryid).exec(callback);
+            },
+            category_items(callback) {
+                Item.find({ category: req.body.categoryid }).exec(callback);
+            }
+        },
+        (err, results) => {
+            if (err) {
+                return next(err);
+            }
+
+            // success
+            if (results.category_items.length > 0) {
+                // category has items; render in the same way as for GET route
+                res.render('category_delete', {
+                    title: 'Delete Category',
+                    category: results.category,
+                    category_items: results.category_items,
+                });
+                return;
+            }
+
+            // category has no items; delete object and redirect to the list of categories (index page)
+            Category.findByIdAndRemove(req.body.categoryid, (err) => {
+                if (err) {
+                    return next(err);
+                }
+
+                res.redirect('/');
+            });
+        }
+    );
 }
 
 exports.category_update_get = (req, res, next) => {
