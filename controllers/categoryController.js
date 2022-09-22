@@ -96,7 +96,7 @@ exports.category_create_post = [
 
         // create a category object
         const category = new Category({
-            name: req.body.name,
+            name: req.body.name.toUpperCase(),
             description: req.body.description
         });
 
@@ -111,7 +111,7 @@ exports.category_create_post = [
         } else {
             // data from form is valid
             // check if category with same name already exists
-            Category.findOne({ name: req.body.name })
+            Category.findOne({ name: req.body.name.toUpperCase() })
                 .exec((err, found_category) => {
                     if (err) {
                         return next(err);
