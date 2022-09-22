@@ -43,6 +43,7 @@ exports.index = getCategories('index');
 exports.category_list = getCategories('category_list');
 
 // display detail page for a specific category
+// TODO: do I need category_items displayed in the template?
 exports.category_detail = (req, res, next) => {
     async.parallel(
         {
@@ -65,7 +66,7 @@ exports.category_detail = (req, res, next) => {
             }
 
             res.render('category_detail', {
-                title: 'Genre Detail',
+                title: 'Category Detail',
                 category: results.category,
                 category_items: results.category_items,
             });
@@ -135,7 +136,33 @@ exports.category_create_post = [
 ]
 
 exports.category_delete_get = (req, res, next) => {
-    res.send('xxx');
+    async.parallel(
+        {
+            category(callback) {
+                Category.findById(req.params.id).exec(callback);
+            },
+            category_items(callback) {
+                Item.find({ category: req.params.id }).exec(callback);
+            }
+        },
+        (err, results) => {
+            if (err) {
+                return next(err);
+            }
+    
+            // no results
+            if (results.category === null) {
+                res.redirect('/');
+            }
+    
+            // successful, so render
+            res.render('category_delete', {
+                title: 'Delete Category',
+                category: results.category,
+                category_items: results.category_items,
+            });
+        }
+    );
 }
 
 exports.category_delete_post = (req, res, next) => {

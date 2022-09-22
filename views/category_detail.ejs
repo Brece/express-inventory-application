@@ -1,2 +1,14 @@
-// TODO:
-xxx
+<%- include('partials/_header') %> 
+
+<!-- TODO: rework layout -->
+<div class="o-wrap c-category-detail">
+    <h1><%= title %></h1>
+    <div>
+        <h2><%= category.name %></h2>
+        <p><%= category.description %></p>
+        <p><%= category.item_count %></p>
+    </div>
+
+</div>
+
+<%- include('partials/_footer') %> 

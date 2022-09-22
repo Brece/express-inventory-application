@@ -1,0 +1,24 @@
+<%- include('partials/_header') %> 
+
+<!-- TODO: rework layout -->
+<div class="o-wrap c-category-delete">
+    <h1><%= title %></h1>
+    <div>
+        <h2><%= category.name %></h2>
+        <p><%= category.description %></p>
+    </div>
+
+    <% if (category_items.length > 0) { -%>
+        <h3>Please delete/edit these products first in order to delete the category:</h3>
+        <ul>
+            <% category_items.forEach(function (item) { -%>
+                <li>
+                    <a href="#"><%= item.title %></a>
+                    <p><%= item.description %></p>
+                </li>
+            <% }) %> 
+        </ul>
+    <% } -%>
+</div>
+
+<%- include('partials/_footer') %> 
