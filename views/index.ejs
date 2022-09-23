@@ -7,8 +7,10 @@
         <ul>
             <% category_list.forEach(function (category) { -%>
                 <li>
-                    <span><%= category.name %></span>
-                    <span><%= category.item_count %></span>
+                    <a href="/category/<%= category._id %>">
+                        <span><%= category.name %></span>
+                        <span><%= category.item_count %></span>
+                    </a>
                 </li>
             <% }) %> 
         </ul>

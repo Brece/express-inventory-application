@@ -1,12 +1,25 @@
 <%- include('partials/_header') %> 
 
-<!-- TODO: rework layout -->
+<!-- TODO: rework layout; category details with edit and delete buttons; display lists of items that belong to this category -->
 <div class="o-wrap c-category-detail">
     <h1><%= title %></h1>
-    <div>
+    <div class="c-category-detail__container">
         <h2><%= category.name %></h2>
         <p><%= category.description %></p>
         <p><%= category.item_count %></p>
+    </div>
+    <div class="c-category__btns">
+        <form action="/category/<%= category._id %>/update" method="GET">
+            <button class="c-btn" type="submit">Update</button>
+        </form>
+        <form action="/category/<%= category._id %>/delete" method="GET">
+            <button class="c-btn" type="submit">Delete</button>
+        </form>
+    </div>
+
+    <div class="c-category-detail__items">
+        <!-- loop through list of item and display item-cards -->
+        <%- include('partials/_item_card') %>
     </div>
 
 </div>

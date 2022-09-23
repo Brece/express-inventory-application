@@ -76,7 +76,11 @@ exports.category_detail = (req, res, next) => {
 
 // display category create form on GET
 exports.category_create_get = (req, res, next) => {
-    res.render('category_form', { title: 'Create Category'});
+    res.render('category_form', {
+        title: 'Create Category',
+        update: false,
+        category: undefined,
+    });
 }
 
 exports.category_create_post = [
@@ -106,6 +110,7 @@ exports.category_create_post = [
             res.render('category_form', {
                 title: 'Create Category',
                 category,
+                update: false,
                 errors: errors.array()
             });
             return;
@@ -127,7 +132,7 @@ exports.category_create_post = [
                             if (err) {
                                 return next(err);
                             }
-                            res.redirect(category.url);
+                            res.redirect('/');
                         });
                     }
                 });
@@ -205,9 +210,69 @@ exports.category_delete_post = (req, res, next) => {
 }
 
 exports.category_update_get = (req, res, next) => {
-    res.send('xxx');
+    // redirect to category/:id/update url and render the form
+    Category.findById(req.params.id)
+        .exec((err, category) => {
+            if (err) {
+                return next(err);
+            }
+            // no results
+            if (category === null) {
+                const err = new Error('Category not found');
+                err.status = 404;
+                return next(err);
+            }
+            // success, so render in update form
+            res.render('category_form', {
+                title: 'Update Category',
+                category,
+                update: true,
+            });
+        });
 }
 
-exports.category_update_post = (req, res, next) => {
-    res.send('xxx');
-}
+exports.category_update_post = [
+    // validate and sanitize fields
+    body('name', 'Category name required')
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    body('description', 'Category description required')
+        .trim()
+        .isLength({ min: 1})
+        .escape(),
+    
+    // process request after validation and sanitization
+    (req, res, next) => {
+        // extract validation errors from request
+        const errors = validationResult(req);
+
+        // create category object with escaped/trimmed data and old ID
+        const category = new Category({
+            name: req.body.name,
+            description: req.body.description,
+            _id: req.params.id,
+        });
+
+        if (!errors.isEmpty()) {
+            // there are errors; render form again with sanitized values/error message
+            res.render('category_form', {
+                title: 'Update Category',
+                category,
+                update: true,
+                errors: errors.array(),
+            });
+            return;
+        }
+
+        // data from form is valid; update the document
+        Category.findByIdAndUpdate(req.params.id, category, {}, (err, thecategory) => {
+            if (err) {
+                return next(err);
+            }
+
+            // successful; redirect to category detail page
+            res.redirect(thecategory.url);
+        });
+    }
+]

@@ -7,7 +7,7 @@
         <h2><%= category.name %></h2>
         <p><%= category.description %></p>
         
-        <form action="" method="POST">
+        <form action="/category/<%= category._id  %>/delete" method="POST">
             <input type="hidden" name="categoryid" value=<%= category._id %>>
             <button type="submit">Delete</button>
         </form>

@@ -1,0 +1,26 @@
+<%- include('partials/_header') %>
+
+<div>
+    <h1><%= title %></h1>
+    <form
+        action="<%= update ? `/category/${ category._id }/update` : '/category/create' %>"
+        method="POST"
+        class="c-form">
+        <div class="c-form__group">
+            <label for="name">Name</label>
+            <input 
+                type="text"
+                id="name"
+                name="name"
+                placeholder="e.g. Electronics"
+                value="<%= category ? category.name : '' %>">
+        </div>
+        <div class="c-form__group">
+            <label for="description">Description</label>
+            <textarea type="text" id="description" name="description" rows="5" cols="33"><%= category ? category.description : '' %></textarea>
+        </div>
+        <button class="c-btn" type="submit">Submit</button>
+    </form>
+</div>
+
+<%- include('partials/_footer') %>
