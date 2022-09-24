@@ -3,7 +3,7 @@
 <div>
     <h1><%= title %></h1>
     <form
-        action="<%= update ? `/category/${ category._id }/update` : '/category/create' %>"
+        action="<%= update ? `/brand/${ brand._id }/update` : '/brand/create' %>"
         method="POST"
         class="c-form">
         <div class="c-form__group">
@@ -14,11 +14,21 @@
                 name="name"
                 required
                 placeholder="e.g. Electronics"
-                value="<%= category ? category.name : '' %>">
+                value="<%= brand ? brand.name : '' %>">
         </div>
         <div class="c-form__group">
             <label for="description">Description</label>
-            <textarea type="text" id="description" required name="description" rows="5" cols="33"><%= category ? category.description : '' %></textarea>
+            <textarea type="text" id="description" required name="description" rows="5" cols="33"><%= brand ? brand.description : '' %></textarea>
+        </div>
+        <div class="c-form__group">
+            <label for="location">Location</label>
+            <input 
+                type="text"
+                id="location"
+                name="location"
+                required
+                placeholder="e.g. Asia"
+                value="<%= brand ? brand.location : '' %>">
         </div>
         <button class="c-btn" type="submit">Submit</button>
     </form>

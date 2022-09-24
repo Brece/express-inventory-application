@@ -1,6 +1,4 @@
 const Item = require('../models/Item');
-const ItemInstance = require('../models/ItemInstance');
-const Brand = require('../models/Brand');
 const Category = require('../models/Category');
 
 const { body, validationResult } = require('express-validator');
@@ -85,10 +83,13 @@ exports.category_create_get = (req, res, next) => {
 
 exports.category_create_post = [
     // validate and sanitize the name field
-    body('name', 'Category name required')
+    body('name')
         .trim()
         .isLength({ min: 1 })
-        .escape(),
+        .escape()
+        .withMessage('Category name required')
+        .isAlphanumeric()
+        .withMessage('Name has non-alphanumeric characters.'),
     body('description', 'Category description required')
         .trim()
         .isLength({ min: 1})
@@ -158,6 +159,7 @@ exports.category_delete_get = (req, res, next) => {
             // no results
             if (results.category === null) {
                 res.redirect('/');
+                return;
             }
     
             // successful, so render

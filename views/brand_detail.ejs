@@ -1,0 +1,27 @@
+<%- include('partials/_header') %> 
+
+<!-- TODO: rework layout; brand details with edit and delete buttons; display lists of items that belong to this brand -->
+<div class="o-wrap c-brand-detail">
+    <h1><%= title %></h1>
+    <div class="c-brand-detail__container">
+        <h2><%= brand.name %></h2>
+        <p><%= brand.description %></p>
+        <p><%= brand.location %></p>
+    </div>
+    <div class="c-brand__btns">
+        <form action="/brand/<%= brand._id %>/update" method="GET">
+            <button class="c-btn" type="submit">Update</button>
+        </form>
+        <form action="/brand/<%= brand._id %>/delete" method="GET">
+            <button class="c-btn" type="submit">Delete</button>
+        </form>
+    </div>
+
+    <div class="c-brand-detail__items">
+        <!-- loop through list of item (brand_items) and display item-cards -->
+        <%- include('partials/_item_card') %>
+    </div>
+
+</div>
+
+<%- include('partials/_footer') %> 
