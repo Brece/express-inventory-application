@@ -1,0 +1,30 @@
+<%- include('partials/_header') %> 
+
+<div class="o-wrap c-item">
+    <h1><%= title %></h1>
+    <p><%= description %></p>
+    <p><%= brand %></p>
+    <p><%= size %></p>
+    <p><%= in_stock %></p>
+    <p><%= price %></p>
+    <p><%= productID %></p>
+
+    <% if (categories.length > 0) { %>
+        <div>
+            <% for (const category of categories) { %>
+                <p><%= category.name %></p>
+            <% } %>
+        </div>
+    <% } %>
+
+    <input type="hidden" name="iteminstance_id" value="<%= id %>">
+
+    <form action="/iteminstance/<%= id %>/update" method="GET">
+        <button type="submit">Update</button>
+    </form>
+    <form action="/iteminstance/<%= id %>/delete" method="POST">
+        <button type="submit">Delete</button>
+    </form>
+</div>
+
+<%- include('partials/_footer') %> 

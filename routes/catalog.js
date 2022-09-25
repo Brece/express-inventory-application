@@ -49,6 +49,5 @@ router.post('/iteminstance/:id/delete', iteminstance_controller.iteminstance_del
 router.get('/iteminstance/:id/update', iteminstance_controller.iteminstance_update_get);
 router.post('/iteminstance/:id/update', iteminstance_controller.iteminstance_update_post);
 router.get('/iteminstance/:id', iteminstance_controller.iteminstance_detail);
-router.get('/iteminstance', iteminstance_controller.iteminstance_list);
 
 module.exports = router;

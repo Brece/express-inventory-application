@@ -5,7 +5,6 @@ const Category = require('../models/Category');
 
 const async = require('async');
 const { body, validationResult } = require('express-validator');
-const mongoose = require('mongoose');
 
 exports.item_list = (req, res, next) => {
     Item.find()
