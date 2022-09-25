@@ -78,6 +78,7 @@ exports.category_create_get = (req, res, next) => {
         title: 'Create Category',
         update: false,
         category: undefined,
+        errors: false,
     });
 }
 
@@ -229,6 +230,7 @@ exports.category_update_get = (req, res, next) => {
                 title: 'Update Category',
                 category,
                 update: true,
+                errors: false,
             });
         });
 }

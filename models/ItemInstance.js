@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ItemInstanceSchema = new Schema({
     size: { type: String, required: true, minLength: 1 },
-    price: { type: Number, required: true },
+    price: { type: String, required: true },
     in_stock: { type: Number, required: true, default: 1 },
     item: { type: Schema.Types.ObjectId, ref: 'Item', required: true },
 });
