@@ -40,7 +40,12 @@ implement checked brand option
             <select name="brand" id="brand" size="0" required>
                 <% if (brands.length > 0)  { %> 
                     <% brands.forEach((brand) => { %>
-                        <option value="<%= brand.name %>"><%= brand.name %></option>
+                        <option
+                            value="<%= brand._id %>"
+                            <%= brand.selected ? 'selected' : '' %>
+                            >
+                            <%= brand.name %>
+                        </option>
                     <% }) %>
                 <% } %> 
             </select>
@@ -53,8 +58,8 @@ implement checked brand option
                     type="checkbox"
                     id="<%= category.name %>"
                     name="category"
-                    value="<%= category.name %>"
-                    <%= category.checked ? checked : '' %>
+                    value="<%= category._id %>"
+                    <%= category.checked ? 'checked' : '' %>
                     >
                     <label for="<%= category.name %>"><%= category.name %></label>
                 <% }) %>
