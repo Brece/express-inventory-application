@@ -1,0 +1,36 @@
+<%- include('partials/_header') %> 
+
+<!-- TODO: rework layout -->
+<div class="o-wrap c-item-delete">
+    <h1><%= title %></h1>
+    <div>
+        <h2><%= item.title %></h2>
+        <p><%= item.description %></p>
+        <p><%= item.productID %></p>
+        <p><%= item.brand.name %></p>
+        <form action="/item/<%= item._id  %>/delete" method="POST">
+            <input type="hidden" name="itemid" value=<%= item._id %>>
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+
+    <% if (iteminstances.length > 0) { -%>
+        <h3>Please delete/edit these items first in order to delete the product:</h3>
+        <ul>
+            <% iteminstances.forEach(function (iteminstance) { -%>
+                <li>
+                    <a href="<%= iteminstance.url %>">
+                        <%= iteminstance.size %>
+                    </a>
+                    <p><%= iteminstance.item.title %></p>
+                    <p><%= iteminstance.in_stock %></p>
+                    <form action="/iteminstance/<%= iteminstance._id %>/delete" method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+            <% }) %> 
+        </ul>
+    <% } -%>
+</div>
+
+<%- include('partials/_footer') %> 

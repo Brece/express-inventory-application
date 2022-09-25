@@ -181,14 +181,77 @@ exports.item_create_post = [
     }
 ]
 
-// TODO:
 exports.item_delete_get = (req, res, next) => {
-    res.send('xxx');
+    async.parallel(
+        {
+            item(callback) {
+                Item.findById(req.params.id).exec(callback);
+            },
+            iteminstances(callback) {
+                ItemInstance.find({ item: req.params.id })
+                    .populate('item')
+                    .exec(callback);
+            }
+        },
+        (err, results) => {
+            if (err) {
+                return next(err);
+            }
+
+            if (results.item === null) {
+                // no results
+                res.redirect('/item');
+                return;
+            }
+
+            // success; render
+            res.render('item_delete', {
+                title: 'Delete Product',
+                item: results.item,
+                iteminstances: results.iteminstances,
+            });
+        }
+    )
 }
 
-// TODO:
 exports.item_delete_post = (req, res, next) => {
-    res.send('xxx');
+    // first we validate that an ID has been provided via the HTML body (not from the URL)
+    async.parallel(
+        {
+            item(callback) {
+                Item.findById(req.body.itemid).exec(callback);
+            },
+            iteminstances(callback) {
+                ItemInstance.find({ item: req.body.itemid })
+                    .populate('item')
+                    .exec(callback);
+            }
+        },
+        (err, results) => {
+            if (err) {
+                return next(err);
+            }
+
+            if (results.iteminstances.length > 0) {
+                // iteminstances exist; render the same way as fot GET route
+                res.render('item_delete', {
+                    title: 'Delete Product',
+                    item: results.item,
+                    iteminstances: results.iteminstances,
+                });
+                return;
+            }
+
+            // no instances; delete item and redirect to the item list
+            Item.findByIdAndRemove(req.body.itemid, (err) => {
+                if (err) {
+                    return next(err);
+                }
+                // success
+                res.redirect('/item');
+            });
+        }
+    );
 }
 
 exports.item_update_get = (req, res, next) => {
