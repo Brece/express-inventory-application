@@ -125,9 +125,85 @@ exports.iteminstance_delete_post = (req, res, next) => {
 }
 
 exports.iteminstance_update_get = (req, res, next) => {
-    res.send('xxx');
+    ItemInstance.findById(req.params.id)
+        .populate('item')
+        .exec((err, iteminstance) => {
+            if (err) {
+                return next(err);
+            }
+
+            // no results
+            if (iteminstance === null) {
+                const err = new Error('Product instance not found');
+                err.status = 404;
+                return next(err);
+            }
+
+            //success; render form
+            res.render('iteminstance_form', {
+                title: iteminstance.item.title,
+                iteminstance,
+                item: iteminstance.item,
+                update: true,
+                errors: false
+            });
+        });
 }
 
-exports.iteminstance_update_post = (req, res, next) => {
-    res.send('xxx');
-}
+exports.iteminstance_update_post = [
+    // validate and sanitized data
+    body('size', 'Product size is required')
+        .trim()
+        .escape(),
+    body('price', 'Product price is required')
+        .trim()
+        .escape(),
+    body('in_stock')
+        .escape()
+        .isInt()
+        .withMessage('In stock needs to be a type of "number"'),
+    
+    // process request after validation and sanitization
+    (req, res, next) => {
+        // extract validation errors
+        const errors = validationResult(req);
+
+        // create new instance object with sanitized values and old ID
+        const iteminstance = new ItemInstance({
+            size: req.body.size,
+            price: req.body.price,
+            in_stock: req.body.in_stock,
+            item: req.body.itemid,
+            _id: req.body.iteminstanceid
+        });
+
+        if (!errors.isEmpty()) {
+            // there are errors; render form again with sanitized values and error messages
+            Item.find({ _id: req.query.itemid })
+                .exec((err, item) => {
+                    if (err) {
+                        return next(err);
+                    }
+
+                    res.render('iteminstance_form', {
+                        title: item[0].title,
+                        item: item[0],
+                        iteminstance,
+                        update: true,
+                        errors: errors.array(),
+                    });
+                });
+            return;
+        }
+
+        // data from form is valid; update the document
+        ItemInstance.findByIdAndUpdate(req.body.iteminstanceid, iteminstance, {}, (err) => {
+            if (err) {
+                return next(err);
+            }
+
+            // success; redirect to item instance detail page
+            res.redirect(iteminstance.url);
+        });
+    }
+]
