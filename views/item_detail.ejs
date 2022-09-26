@@ -18,14 +18,18 @@
             </ul>
         <% } -%>
 
-        <div class="c-item__btns">
-            <form action="/item/<%= item._id %>/update" method="GET">
-                <button class="c-btn" type="submit">Update</button>
-            </form>
-            <form action="/item/<%= item._id %>/delete" method="GET">
-                <button class="c-btn" type="submit">Delete</button>
-            </form>
-        </div>
+        <% if (item.protected) { -%>
+            <p>This Document is protected and cannot be changed or deleted.</p>
+        <% } else { -%>
+            <div class="c-item__btns">
+                <form action="/item/<%= item._id %>/update" method="GET">
+                    <button class="c-btn" type="submit">Update</button>
+                </form>
+                <form action="/item/<%= item._id %>/delete" method="GET">
+                    <button class="c-btn" type="submit">Delete</button>
+                </form>
+            </div>
+        <% } -%>
 
         <div>
             <form action="/iteminstance/create" method="GET">

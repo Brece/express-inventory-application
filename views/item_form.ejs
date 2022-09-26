@@ -3,70 +3,76 @@
 implement checked brand option
 -->
 <div>
-    <h1><%= title %></h1>
-    <form
-        action="<%= update ? `/item/${ item._id }/update` : '/item/create' %>"
-        method="POST"
-        class="c-form">
-        <div>
-            <p>If the desired <strong>Brand</strong> or <strong>Category</strong> does not exist then please create those first.</p>
-        </div>
-        <div class="c-form__group">
-            <label for="title">Title</label>
-            <input 
-                type="text"
-                id="title"
-                name="title"
-                required
-                placeholder="e.g. HMAX 1TB SSD"
-                value="<%= item ? item.title : '' %>">
-        </div>
-        <div class="c-form__group">
-            <label for="description">Description</label>
-            <textarea type="text" id="description" required name="description" rows="5" cols="33"><%= item ? item.description : '' %></textarea>
-        </div>
-        <div class="c-form__group">
-            <label for="productID">ProductID</label>
-            <input 
-                type="number"
-                id="productID"
-                name="productID"
-                required
-                placeholder="e.g. 123513252355"
-                value="<%= item ? item.productID : '' %>">
-        </div>
-        <div class="c-form__group">
-            <label for="brand">Brand</label>
-            <select name="brand" id="brand" size="0" required>
-                <% if (brands.length > 0)  { %> 
-                    <% brands.forEach((brand) => { %>
-                        <option
-                            value="<%= brand._id %>"
-                            <%= brand.selected ? 'selected' : '' %>
-                            >
-                            <%= brand.name %>
-                        </option>
+    <% if ( item === undefined ? false : item.protected) { -%>
+        <p>This Document is protected and cannot be changed or deleted.</p>
+    <% } -%>
+
+    <% if (item === undefined ? true : !item.protected) { -%>
+        <h1><%= title %></h1>
+        <form
+            action="<%= update ? `/item/${ item._id }/update` : '/item/create' %>"
+            method="POST"
+            class="c-form">
+            <div>
+                <p>If the desired <strong>Brand</strong> or <strong>Category</strong> does not exist then please create those first.</p>
+            </div>
+            <div class="c-form__group">
+                <label for="title">Title</label>
+                <input 
+                    type="text"
+                    id="title"
+                    name="title"
+                    required
+                    placeholder="e.g. HMAX 1TB SSD"
+                    value="<%= item ? item.title : '' %>">
+            </div>
+            <div class="c-form__group">
+                <label for="description">Description</label>
+                <textarea type="text" id="description" required name="description" rows="5" cols="33"><%= item ? item.description : '' %></textarea>
+            </div>
+            <div class="c-form__group">
+                <label for="productID">ProductID</label>
+                <input 
+                    type="number"
+                    id="productID"
+                    name="productID"
+                    required
+                    placeholder="e.g. 123513252355"
+                    value="<%= item ? item.productID : '' %>">
+            </div>
+            <div class="c-form__group">
+                <label for="brand">Brand</label>
+                <select name="brand" id="brand" size="0" required>
+                    <% if (brands.length > 0)  { %> 
+                        <% brands.forEach((brand) => { %>
+                            <option
+                                value="<%= brand._id %>"
+                                <%= brand.selected ? 'selected' : '' %>
+                                >
+                                <%= brand.name %>
+                            </option>
+                        <% }) %>
+                    <% } %> 
+                </select>
+            </div>
+            <div class="c-form-group">
+                <label>Category</label>
+                <% if (categories.length > 0)  { %> 
+                    <% categories.forEach((category) => { %>
+                        <input
+                        type="checkbox"
+                        id="<%= category.name %>"
+                        name="category"
+                        value="<%= category._id %>"
+                        <%= category.checked ? 'checked' : '' %>
+                        >
+                        <label for="<%= category.name %>"><%= category.name %></label>
                     <% }) %>
                 <% } %> 
-            </select>
-        </div>
-        <div class="c-form-group">
-            <label>Category</label>
-            <% if (categories.length > 0)  { %> 
-                <% categories.forEach((category) => { %>
-                    <input
-                    type="checkbox"
-                    id="<%= category.name %>"
-                    name="category"
-                    value="<%= category._id %>"
-                    <%= category.checked ? 'checked' : '' %>
-                    >
-                    <label for="<%= category.name %>"><%= category.name %></label>
-                <% }) %>
-            <% } %> 
-        </div>
-        <button class="c-btn" type="submit">Submit</button>
-    </form>
+            </div>
+            <button class="c-btn" type="submit">Submit</button>
+        </form>
+    <% } -%>
 </div>
 
 <% if(errors) { %>
