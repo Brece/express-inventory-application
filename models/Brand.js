@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const BrandSchema = new Schema({
     name: { type: String, required: true, maxLength: 100 },
     description: { type: String, required: true, minLength: 1 },
-    location: { type: String, required: true, minLength: 1 }
+    location: { type: String, required: true, minLength: 1 },
+    protected: { type: Boolean, default: false }
 });
 
 // virtual brand url

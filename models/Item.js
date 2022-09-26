@@ -6,7 +6,8 @@ const ItemSchema = new Schema({
     description: { type: String, required: true, minLength: 1 },
     productID: { type: Number, default: new Date().getTime(), required: true },
     brand: { type: Schema.Types.ObjectId, ref: 'Brand', required: true },
-    category: [{ type: Schema.Types.ObjectId, ref: 'Category', required: true }]
+    category: [{ type: Schema.Types.ObjectId, ref: 'Category', required: true }],
+    protected: { type: Boolean, default: false }
 });
 
 // virtual item url

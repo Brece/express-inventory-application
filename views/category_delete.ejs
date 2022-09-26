@@ -7,10 +7,14 @@
         <h2><%= category.name %></h2>
         <p><%= category.description %></p>
         
-        <form action="/category/<%= category._id  %>/delete" method="POST">
-            <input type="hidden" name="categoryid" value=<%= category._id %>>
-            <button type="submit">Delete</button>
-        </form>
+        <% if (category.protected) { -%>
+            <p>This Document is protected and cannot be changed or deleted.</p>
+        <% } else { -%>
+            <form action="/category/<%= category._id  %>/delete" method="POST">
+                <input type="hidden" name="categoryid" value=<%= category._id %>>
+                <button type="submit">Delete</button>
+            </form>
+        <% } -%>
     </div>
 
     <% if (category_items.length > 0) { -%>
