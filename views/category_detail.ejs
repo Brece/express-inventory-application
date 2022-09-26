@@ -17,11 +17,13 @@
         </form>
     </div>
 
-    <div class="c-category-detail__items">
-        <!-- loop through list of item and display item-cards -->
-        <%- include('partials/_item_card') %>
-    </div>
-
+    <% if (category_items.length > 0) { %>
+        <div class="c-category-detail__items">
+            <% for (const item of category_items) { %>
+                <%- include('partials/_item_card', { item }) %>
+            <% } %>
+        </div>
+    <% } %>
 </div>
 
 <%- include('partials/_footer') %> 

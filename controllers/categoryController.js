@@ -49,7 +49,7 @@ exports.category_detail = (req, res, next) => {
                 Category.findById(req.params.id).exec(callback);
             },
             category_items(callback) {
-                Item.find({ genre: req.params.id }).exec(callback);
+                Item.find({ category: req.params.id }).exec(callback);
             }
         },
         (err, results) => {

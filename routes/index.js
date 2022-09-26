@@ -1,11 +1,9 @@
-// TODO: remove this file if not necessary
+const express = require('express');
+const router = express.Router();
 
-var express = require('express');
-var router = express.Router();
-
-/* GET home page. */
+/* GET about page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Index XXX' });
+  res.render('about');
 });
 
 module.exports = router;

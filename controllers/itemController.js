@@ -175,6 +175,16 @@ exports.item_create_post = [
                 next(err);
             }
             
+            // increment category item_count 
+            item.category.forEach((categoryID) => {
+                Category.findOneAndUpdate({ _id: categoryID }, { $inc: { 'item_count': 1 }})
+                    .exec((err) => {
+                        if (err) {
+                            return next(err);
+                        }
+                    });
+            });
+
             res.redirect(item.url);
         });
     }
@@ -246,6 +256,17 @@ exports.item_delete_post = (req, res, next) => {
                 if (err) {
                     return next(err);
                 }
+
+                // decrement category item_count
+                results.item.category.forEach((categoryID) => {
+                    Category.findOneAndUpdate({ _id: categoryID }, { $inc: { 'item_count': -1 }})
+                        .exec((err) => {
+                            if (err) {
+                                return next(err);
+                            }
+                        });
+                });
+
                 // success
                 res.redirect('/item');
             });

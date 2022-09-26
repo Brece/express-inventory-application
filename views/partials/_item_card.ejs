@@ -1,12 +1,11 @@
 <!-- TODO: item card with picture, name; wrapped in a clickable container that redirects to item instance page  -->
-<div class="c-itemcard">
-    <a href="<%= iteminstance.url %>">
-        <h1><%= iteminstance.size %></h1>
-        <p><%= iteminstance.price %></p>
-        <p><%= iteminstance.in_stock %></p>
+<div class="c-item-card">
+    <a href="<%= item.url %>">
+        <h1><%= item.title %></h1>
+        <p><%= item.description %></p>
     </a>
 
-    <form action="/iteminstance/<%= iteminstance._id %>/update" method="GET">
+    <form action="/item/<%= item._id %>/update" method="GET">
         <button type="submit">Update</button>
     </form>
 </div>
