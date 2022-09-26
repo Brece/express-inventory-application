@@ -1,0 +1,17 @@
+<!-- TODO: replace ID -->
+
+<div class="c-popup">
+    <div class="c-popup__close">
+        <i class="fa-sharp fa-solid fa-circle-xmark"></i>
+    </div>
+    <form action="<%= document.url %>/delete" method="POST">
+        <div>
+            <label for="admin">Please type in Admin Password:</label>
+            <input type="password" name="admin" id="admin" />
+            <input type="hidden" name="documentid" value="<%= document._id %>">
+        </div>
+        <button type="submit">Delete</button>
+    </form>
+</div>
+
+<div class="c-overlay"></div>

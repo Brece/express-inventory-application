@@ -9,7 +9,7 @@ implement checked brand option
         method="POST"
         class="c-form">
         <input type="hidden" name="itemid" value="<%= item._id %>">
-        <input type="hidden" name="iteminstanceid" value="<%= iteminstance._id %>">
+        <input type="hidden" name="iteminstanceid" value="<%= iteminstance ? iteminstance._id : '' %>">
         <div class="c-form__group">
             <label for="size">Size</label>
             <input 

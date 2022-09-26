@@ -3,5 +3,82 @@ body {
           box-sizing: border-box;
   margin: 0;
   padding: 0;
+  position: relative;
+}
+
+.c-popup {
+  max-width: 400px;
+  height: 300px;
+  padding-top: 30px;
+  position: absolute;
+  z-index: 5;
+  top: -1700px;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: aquamarine;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+.c-popup div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.c-popup input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.c-popup button {
+  width: 100%;
+}
+
+.c-popup.isActive {
+  top: 50%;
+}
+
+.c-popup__close {
+  cursor: pointer;
+  position: absolute;
+  right: -15px;
+  top: -15px;
+}
+
+.c-popup__close i {
+  font-size: 30px;
+  color: red;
+}
+
+.c-overlay {
+  position: absolute;
+  z-index: -5;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  background-color: none;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+.c-overlay.isActive {
+  z-index: 4;
+  top: -50vh;
+  bottom: -50vh;
+  left: -50vw;
+  right: -50vw;
+  opacity: .5;
+  background-color: #434343;
 }
 /*# sourceMappingURL=style.css.map */

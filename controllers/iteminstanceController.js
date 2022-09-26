@@ -1,11 +1,7 @@
 const Item = require('../models/Item');
 const ItemInstance = require('../models/ItemInstance');
-const Brand = require('../models/Brand');
-const Category = require('../models/Category');
 
-const async = require('async');
-const { body, validationResult } = require('express-validator');
-const { populate } = require('../models/Item');
+const { body, check, validationResult } = require('express-validator');
 
 exports.iteminstance_detail = (req, res, next) => {
     // populate all nested references
@@ -39,6 +35,7 @@ exports.iteminstance_detail = (req, res, next) => {
                 price: iteminstance.price,
                 in_stock: iteminstance.in_stock,
                 id: iteminstance._id,
+                iteminstance,
             });
         });
 }
@@ -116,13 +113,41 @@ exports.iteminstance_create_post = [
     }
 ]
 
-exports.iteminstance_delete_get = (req, res, next) => {
-    res.send('xxx');
-}
+exports.iteminstance_delete_post = [
+    // validate and sanitize input value
+    body('admin', 'Admin password is required')
+        .trim()
+        .escape(),
+    check('admin')
+        .isIn('admin123')
+        .withMessage(`You don't have the permission`),
+    (req, res, next) => {
+        // extract validation errors
+        const errors = validationResult(req);
 
-exports.iteminstance_delete_post = (req, res, next) => {
-    res.send('xxx');
-}
+        if (!errors.isEmpty()) {
+            const err = new Error(`Wrong password. You don't have permission`);
+            err.status = 403;
+            return next(err);
+        }
+
+        ItemInstance.findById(req.body.documentid)
+            .populate('item')
+            .exec((err, item_instance) => {
+                if (err) {
+                    return next(err);
+                }
+                // success; delete document
+                ItemInstance.findByIdAndRemove(item_instance._id, (err) => {
+                    if (err) {
+                        return next(err);
+                    }
+                    
+                    res.redirect(item_instance.item.url);
+                });
+        });
+    }
+]
 
 exports.iteminstance_update_get = (req, res, next) => {
     ItemInstance.findById(req.params.id)

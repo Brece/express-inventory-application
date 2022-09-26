@@ -44,7 +44,6 @@ router.get('/item', item_controller.item_list);
 // item instance
 router.get('/iteminstance/create', iteminstance_controller.iteminstance_create_get);
 router.post('/iteminstance/create', iteminstance_controller.iteminstance_create_post);
-router.get('/iteminstance/:id/delete', iteminstance_controller.iteminstance_delete_get);
 router.post('/iteminstance/:id/delete', iteminstance_controller.iteminstance_delete_post);
 router.get('/iteminstance/:id/update', iteminstance_controller.iteminstance_update_get);
 router.post('/iteminstance/:id/update', iteminstance_controller.iteminstance_update_post);

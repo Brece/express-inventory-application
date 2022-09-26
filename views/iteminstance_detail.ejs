@@ -22,9 +22,10 @@
     <form action="/iteminstance/<%= id %>/update" method="GET">
         <button type="submit">Update</button>
     </form>
-    <form action="/iteminstance/<%= id %>/delete" method="POST">
-        <button type="submit">Delete</button>
-    </form>
+    
+    <button type="button" class="c-btn c-btn--delete c-btn--popup">Delete</button>
 </div>
+
+<%- include('partials/_popup', { document: iteminstance }) %>
 
 <%- include('partials/_footer') %> 

@@ -2,4 +2,66 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    position: relative;
+}
+
+.c-popup {
+    max-width: 400px;
+    height: 300px;
+    padding-top: 30px;
+    position: absolute;
+    z-index: 5;
+    top: -1700px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: aquamarine;
+    transition: all 1s ease-in-out;
+    
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    input {
+        flex: 1;
+    }
+    button {
+        width: 100%;
+    }
+}
+
+.c-popup.isActive {
+    top: 50%;
+}
+.c-popup__close {
+    cursor: pointer;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+
+    i {
+        font-size: 30px;
+        color: red;
+    }
+}
+
+.c-overlay {
+    position: absolute;
+    z-index: -5;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    background-color: none;
+    transition: all 1s ease-in-out;
+}
+.c-overlay.isActive {
+    z-index: 4;
+    top: -50vh;
+    bottom: -50vh;
+    left: -50vw;
+    right: -50vw;
+    opacity: .5;
+    background-color: #434343;
 }
