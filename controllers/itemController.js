@@ -175,6 +175,8 @@ exports.item_create_post = [
                 next(err);
             }
             
+            /*
+            * item_count feature removed
             // increment category item_count 
             item.category.forEach((categoryID) => {
                 Category.findOneAndUpdate({ _id: categoryID }, { $inc: { 'item_count': 1 }})
@@ -184,6 +186,7 @@ exports.item_create_post = [
                         }
                     });
             });
+            */
 
             res.redirect(item.url);
         });
@@ -257,6 +260,8 @@ exports.item_delete_post = (req, res, next) => {
                     return next(err);
                 }
 
+                /*
+                * item_count feature removed
                 // decrement category item_count
                 results.item.category.forEach((categoryID) => {
                     Category.findOneAndUpdate({ _id: categoryID }, { $inc: { 'item_count': -1 }})
@@ -266,6 +271,7 @@ exports.item_delete_post = (req, res, next) => {
                             }
                         });
                 });
+                */
 
                 // success
                 res.redirect('/item');
