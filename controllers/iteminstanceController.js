@@ -115,11 +115,10 @@ exports.iteminstance_create_post = [
 
 exports.iteminstance_delete_post = [
     // validate and sanitize input value
-    body('admin', 'Admin password is required')
-        .trim()
-        .escape(),
     check('admin')
-        .isIn('admin123')
+        .trim()
+        .escape()
+        .equals('admin123')
         .withMessage(`You don't have the permission`),
     (req, res, next) => {
         // extract validation errors
@@ -137,8 +136,9 @@ exports.iteminstance_delete_post = [
                 if (err) {
                     return next(err);
                 }
+
                 // success; delete document
-                ItemInstance.findByIdAndRemove(item_instance._id, (err) => {
+                ItemInstance.findByIdAndRemove(req.body.documentid, (err) => {
                     if (err) {
                         return next(err);
                     }

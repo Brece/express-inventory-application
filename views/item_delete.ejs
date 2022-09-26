@@ -24,9 +24,6 @@
                     </a>
                     <p><%= iteminstance.item.title %></p>
                     <p><%= iteminstance.in_stock %></p>
-                    <form action="/iteminstance/<%= iteminstance._id %>/delete" method="POST">
-                        <button type="submit">Delete</button>
-                    </form>
                 </li>
             <% }) %> 
         </ul>

@@ -54,7 +54,8 @@ exports.brand_create_get = (req, res, next) => {
     res.render('brand_form', {
         title: 'Create Brand',
         update: false,
-        brand: undefined
+        errors: false,
+        brand: undefined,
     });
 }
 

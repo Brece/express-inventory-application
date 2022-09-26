@@ -17,11 +17,13 @@
         </form>
     </div>
 
-    <div class="c-brand-detail__items">
-        <!-- loop through list of item (brand_items) and display item-cards -->
-        <%- include('partials/_item_card') %>
-    </div>
-
+    <% if (brand_items.length > 0) { %>
+        <div class="c-brand-detail__items">
+            <% for (const item of brand_items) { %>
+                <%- include('partials/_item_card', { item }) %>
+            <% } %>
+        </div>
+    <% } %>
 </div>
 
 <%- include('partials/_footer') %> 
