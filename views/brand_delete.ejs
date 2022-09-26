@@ -7,12 +7,18 @@
         <h2><%= brand.name %></h2>
         <p><%= brand.description %></p>
         <p><%= brand.location %></p>
-        
-        <form action="/brand/<%= brand._id  %>/delete" method="POST">
-            <input type="hidden" name="brandid" value=<%= brand._id %>>
-            <button type="submit">Delete</button>
-        </form>
     </div>
+
+    <% if (brand.protected) { -%>
+        <p>This Document is protected and cannot be changed or deleted.</p>
+    <% } else { -%>
+        <div class="c-brand__btns">
+            <form action="/brand/<%= brand._id  %>/delete" method="POST">
+                <input type="hidden" name="brandid" value=<%= brand._id %>>
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    <% } -%>
 
     <% if (brand_items.length > 0) { -%>
         <h3>Please delete/edit these products first in order to delete the brand:</h3>
