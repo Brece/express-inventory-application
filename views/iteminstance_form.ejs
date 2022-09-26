@@ -3,34 +3,40 @@
 implement checked brand option
 -->
 <div>
-    <h1><%= title %></h1>
-    <form
-        action="<%= update ? `/iteminstance/${ iteminstance._id }/update` : '/iteminstance/create' %>"
-        method="POST"
-        class="c-form">
-        <input type="hidden" name="itemid" value="<%= item._id %>">
-        <input type="hidden" name="iteminstanceid" value="<%= iteminstance ? iteminstance._id : '' %>">
-        <div class="c-form__group">
-            <label for="size">Size</label>
-            <input 
-                type="text"
-                id="size"
-                name="size"
-                required
-                placeholder="e.g. XXL"
-                value="<%= iteminstance ? iteminstance.size : '' %>">
-        </div>
-        <div class="c-form__group">
-            <label for="price">Price</label>
-            <input type="text" id="price" required name="price" value="<%= iteminstance ? iteminstance.price : '' %>" pattern="^\d+(,\d{1,2})?$" placeholder="Format: 1,23" required />
-        </div>
-        <div class="c-form__group">
-            <label for="in_stock">In Stock</label>
-            <input type="number" id="in_stock" required name="in_stock" value="<%= iteminstance ? iteminstance.in_stock : '' %>" min="1" max="99" required />
-        </div>
+    <% if ( iteminstance === undefined ? false : iteminstance.protected) { -%>
+        <p>This Document is protected and cannot be changed or deleted.</p>
+    <% } -%>
 
-        <button class="c-btn" type="submit">Submit</button>
-    </form>
+    <% if (iteminstance === undefined ? true : !iteminstance.protected) { -%>
+        <h1><%= title %></h1>
+        <form
+            action="<%= update ? `/iteminstance/${ iteminstance._id }/update` : '/iteminstance/create' %>"
+            method="POST"
+            class="c-form">
+            <input type="hidden" name="itemid" value="<%= item._id %>">
+            <input type="hidden" name="iteminstanceid" value="<%= iteminstance ? iteminstance._id : '' %>">
+            <div class="c-form__group">
+                <label for="size">Size</label>
+                <input 
+                    type="text"
+                    id="size"
+                    name="size"
+                    required
+                    placeholder="e.g. XXL"
+                    value="<%= iteminstance ? iteminstance.size : '' %>">
+            </div>
+            <div class="c-form__group">
+                <label for="price">Price</label>
+                <input type="text" id="price" required name="price" value="<%= iteminstance ? iteminstance.price : '' %>" pattern="^\d+(,\d{1,2})?$" placeholder="Format: 1,23" required />
+            </div>
+            <div class="c-form__group">
+                <label for="in_stock">In Stock</label>
+                <input type="number" id="in_stock" required name="in_stock" value="<%= iteminstance ? iteminstance.in_stock : '' %>" min="1" max="99" required />
+            </div>
+
+            <button class="c-btn" type="submit">Submit</button>
+        </form>
+    <% } -%>
 </div>
 
 <% if(errors) { %>

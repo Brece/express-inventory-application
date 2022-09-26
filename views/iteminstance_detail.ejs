@@ -1,6 +1,6 @@
 <%- include('partials/_header') %> 
 
-<div class="o-wrap c-item">
+<div class="o-wrap c-iteminstance">
     <h1><%= title %></h1>
     <p><%= description %></p>
     <p><%= brand %></p>
@@ -17,15 +17,23 @@
         </div>
     <% } %>
 
-    <input type="hidden" name="iteminstance_id" value="<%= id %>">
+    <% if (iteminstance.protected) { -%>
+        <p>This Document is protected and cannot be changed or deleted.</p>
+    <% } else { -%>
+        <input type="hidden" name="iteminstance_id" value="<%= id %>">
 
-    <form action="/iteminstance/<%= id %>/update" method="GET">
-        <button type="submit">Update</button>
-    </form>
-    
-    <button type="button" class="c-btn c-btn--delete c-btn--popup">Delete</button>
+        <form action="/iteminstance/<%= id %>/update" method="GET">
+            <button type="submit">Update</button>
+        </form>
+        
+        <button type="button" class="c-btn c-btn--delete c-btn--popup">Delete</button>
+    <% } -%>
 </div>
 
-<%- include('partials/_popup', { document: iteminstance }) %>
+// TODO: hide popup for protected iteminstances
+<% if (!iteminstance.protected) { -%>
+
+<% } -%>
+    <%- include('partials/_popup', { document: iteminstance }) %>
 
 <%- include('partials/_footer') %> 

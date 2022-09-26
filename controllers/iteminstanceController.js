@@ -113,10 +113,9 @@ exports.iteminstance_create_post = [
     }
 ]
 
-exports.iteminstance_delete_post = [
+exports.iteminstance_delete_protected_post = [
     // validate and sanitize input value
     check('admin')
-        .trim()
         .escape()
         .equals('admin123')
         .withMessage(`You don't have the permission`),
@@ -148,6 +147,25 @@ exports.iteminstance_delete_post = [
         });
     }
 ]
+
+exports.iteminstance_delete_post = (req, res, next) => {
+    ItemInstance.findById(req.body.documentid)
+            .populate('item')
+            .exec((err, item_instance) => {
+                if (err) {
+                    return next(err);
+                }
+
+                // success; delete document
+                ItemInstance.findByIdAndRemove(req.body.documentid, (err) => {
+                    if (err) {
+                        return next(err);
+                    }
+                    
+                    res.redirect(item_instance.item.url);
+                });
+        });
+}
 
 exports.iteminstance_update_get = (req, res, next) => {
     ItemInstance.findById(req.params.id)

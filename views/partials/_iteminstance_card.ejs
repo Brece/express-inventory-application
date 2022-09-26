@@ -6,7 +6,11 @@
         <p><%= iteminstance.in_stock %></p>
     </a>
 
-    <form action="/iteminstance/<%= iteminstance._id %>/update" method="GET">
-        <button type="submit">Update</button>
-    </form>
+    <% if (iteminstance.protected) { -%>
+        <p>This Document is protected and cannot be changed or deleted.</p>
+    <% } else { -%>
+        <form action="/iteminstance/<%= iteminstance._id %>/update" method="GET">
+            <button type="submit">Update</button>
+        </form>
+    <% } -%>
 </div>

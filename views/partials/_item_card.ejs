@@ -5,7 +5,11 @@
         <p><%= item.description %></p>
     </a>
 
-    <form action="/item/<%= item._id %>/update" method="GET">
-        <button type="submit">Update</button>
-    </form>
+    <% if (item.protected) { -%>
+        <p>This Document is protected and cannot be changed or deleted.</p>
+    <% } else { -%>
+        <form action="/item/<%= item._id %>/update" method="GET">
+            <button type="submit">Update</button>
+        </form>
+    <% } -%>
 </div>
