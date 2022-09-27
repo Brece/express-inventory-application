@@ -6,7 +6,6 @@ const ItemInstanceSchema = new Schema({
     price: { type: String, required: true },
     in_stock: { type: Number, required: true, default: 1 },
     item: { type: Schema.Types.ObjectId, ref: 'Item', required: true },
-    image: { data: Buffer, contentType: String, name: String, size: Number },
     protected: { type: Boolean, default: false }
 });
 

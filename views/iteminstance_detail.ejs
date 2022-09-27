@@ -17,6 +17,11 @@
         </div>
     <% } %>
 
+    <img 
+    src="data:<%= iteminstance.item.image.contentType %>;base64,
+    <%= iteminstance.item.image.data.toString('base64') %>"
+    alt="<%= iteminstance.item.image.name %>">
+
     <% if (iteminstance.protected) { -%>
         <p>This Document is protected and cannot be changed or deleted.</p>
     <% } else { -%>
@@ -30,10 +35,8 @@
     <% } -%>
 </div>
 
-// TODO: hide popup for protected iteminstances
 <% if (!iteminstance.protected) { -%>
-
-<% } -%>
     <%- include('partials/_popup', { document: iteminstance }) %>
+<% } -%>
 
 <%- include('partials/_footer') %> 

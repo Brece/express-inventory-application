@@ -5,7 +5,7 @@ const storage = multer.memoryStorage()
 const upload = multer({ 
     storage: storage,
     limits: {
-        fileSize: 300000,
+        fileSize: 500000,
     },
 });
 
@@ -51,11 +51,11 @@ router.get('/item', item_controller.item_list);
 
 // item instance
 router.get('/iteminstance/create', iteminstance_controller.iteminstance_create_get);
-router.post('/iteminstance/create', upload.single('image'), iteminstance_controller.iteminstance_create_post);
+router.post('/iteminstance/create', iteminstance_controller.iteminstance_create_post);
 router.post('/api/iteminstance/:id/delete', iteminstance_controller.iteminstance_delete_protected_post);
 router.post('/iteminstance/:id/delete', iteminstance_controller.iteminstance_delete_post);
 router.get('/iteminstance/:id/update', iteminstance_controller.iteminstance_update_get);
-router.post('/iteminstance/:id/update', upload.single('image'), iteminstance_controller.iteminstance_update_post);
+router.post('/iteminstance/:id/update', iteminstance_controller.iteminstance_update_post);
 router.get('/iteminstance/:id', iteminstance_controller.iteminstance_detail);
 
 module.exports = router;

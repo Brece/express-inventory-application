@@ -100,11 +100,16 @@ exports.category_create_post = [
     (req, res, next) => {
         // validation errors from request
         const errors = validationResult(req);
-
         // create a category object
         const category = new Category({
             name: req.body.name.toUpperCase(),
-            description: req.body.description
+            description: req.body.description,
+            image: {
+                name: req.file.originalname,
+                size: req.file.size,
+                data: req.file.buffer,
+                contentType: req.file.mimetype
+            },
         });
 
         if (!errors.isEmpty()) {
@@ -255,6 +260,12 @@ exports.category_update_post = [
         const category = new Category({
             name: req.body.name,
             description: req.body.description,
+            image: {
+                name: req.file.originalname,
+                size: req.file.size,
+                data: req.file.buffer,
+                contentType: req.file.mimetype
+            },
             _id: req.params.id,
         });
 

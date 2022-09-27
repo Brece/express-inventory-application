@@ -18,6 +18,11 @@
             </ul>
         <% } -%>
 
+        <img 
+            src="data:<%= item.image.contentType %>;base64,
+            <%= item.image.data.toString('base64') %>"
+            alt="<%= item.image.name %>">
+
         <% if (item.protected) { -%>
             <p>This Document is protected and cannot be changed or deleted.</p>
         <% } else { -%>
@@ -44,7 +49,7 @@
         <div class="c-item-detail__items">
             <% item_instance.forEach(function (iteminstance) { -%>
                 <!-- loop through list of item and display item-cards -->
-                <%- include('partials/_iteminstance_card', {iteminstance})%>
+                <%- include('partials/_iteminstance_card', {iteminstance, item})%>
             <% }) %> 
         </div>
     <% } -%>

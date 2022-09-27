@@ -12,6 +12,7 @@ implement checked brand option
         <form
             action="<%= update ? `/iteminstance/${ iteminstance._id }/update` : '/iteminstance/create' %>"
             method="POST"
+            enctype="multipart/form-data"
             class="c-form">
             <input type="hidden" name="itemid" value="<%= item._id %>">
             <input type="hidden" name="iteminstanceid" value="<%= iteminstance ? iteminstance._id : '' %>">
@@ -33,7 +34,6 @@ implement checked brand option
                 <label for="in_stock">In Stock</label>
                 <input type="number" id="in_stock" required name="in_stock" value="<%= iteminstance ? iteminstance.in_stock : '' %>" min="1" max="99" required />
             </div>
-
             <button class="c-btn" type="submit">Submit</button>
         </form>
     <% } -%>

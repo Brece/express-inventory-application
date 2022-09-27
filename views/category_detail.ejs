@@ -6,6 +6,10 @@
     <div class="c-category-detail__container">
         <h2><%= category.name %></h2>
         <p><%= category.description %></p>
+        <img 
+            src="data:<%= category.image.contentType %>;base64,
+            <%= category.image.data.toString('base64') %>"
+            alt="<%= category.image.name %>">
     </div>
 
     <% if (category.protected) { -%>

@@ -12,6 +12,7 @@ implement checked brand option
         <form
             action="<%= update ? `/item/${ item._id }/update` : '/item/create' %>"
             method="POST"
+            enctype="multipart/form-data"
             class="c-form">
             <div>
                 <p>If the desired <strong>Brand</strong> or <strong>Category</strong> does not exist then please create those first.</p>
@@ -69,6 +70,10 @@ implement checked brand option
                         <label for="<%= category.name %>"><%= category.name %></label>
                     <% }) %>
                 <% } %> 
+            </div>
+            <div class="c-form__group">
+                <label for="image">Upload Image</label>
+                <input type="file" id="image" name="image" required>
             </div>
             <button class="c-btn" type="submit">Submit</button>
         </form>

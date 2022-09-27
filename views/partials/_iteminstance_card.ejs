@@ -4,6 +4,10 @@
         <h1><%= iteminstance.size %></h1>
         <p><%= iteminstance.price %></p>
         <p><%= iteminstance.in_stock %></p>
+        <img 
+            src="data:<%= item.image.contentType %>;base64,
+            <%= item.image.data.toString('base64') %>"
+            alt="<%= item.image.name %>">
     </a>
 
     <% if (iteminstance.protected) { -%>

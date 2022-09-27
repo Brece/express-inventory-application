@@ -3,6 +3,10 @@
     <a href="<%= item.url %>">
         <h1><%= item.title %></h1>
         <p><%= item.description %></p>
+        <img 
+            src="data:<%= item.image.contentType %>;base64,
+            <%= item.image.data.toString('base64') %>"
+            alt="<%= item.image.name %>">
     </a>
 
     <% if (item.protected) { -%>

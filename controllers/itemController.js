@@ -127,6 +127,12 @@ exports.item_create_post = [
             productID: req.body.productID,
             brand: req.body.brand,
             category: typeof req.body.category === 'undefined' ? [] : req.body.category,
+            image: {
+                name: req.file.originalname,
+                size: req.file.size,
+                data: req.file.buffer,
+                contentType: req.file.mimetype
+            },
         });
         // extract errors from validation
         const errors = validationResult(req);
@@ -377,6 +383,12 @@ exports.item_update_post = [
             productID: req.body.productID,
             brand: req.body.brand,
             category: typeof req.body.category === 'undefined' ? [] : req.body.category,
+            image: {
+                name: req.file.originalname,
+                size: req.file.size,
+                data: req.file.buffer,
+                contentType: req.file.mimetype
+            },
             _id: req.params.id,
         });
 

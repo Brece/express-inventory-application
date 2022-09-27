@@ -77,7 +77,6 @@ exports.brand_create_post = [
     // process after validation and sanitization
     (req, res, next) => {
         // extract the validation errors from request
-        console.log(req.file);
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
