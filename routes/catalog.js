@@ -27,7 +27,6 @@ router.post('/category/:id/delete', category_controller.category_delete_post);
 router.get('/category/:id/update', category_controller.category_update_get);
 router.post('/category/:id/update', upload.single('image'), category_controller.category_update_post);
 router.get('/category/:id', category_controller.category_detail);
-router.get('/category', category_controller.category_list);
 
 // brand
 router.get('/brand/create', brand_controller.brand_create_get);

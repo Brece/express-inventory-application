@@ -1,9 +1,200 @@
-body {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
   margin: 0;
   padding: 0;
-  position: relative;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+header {
+  margin-bottom: 40px;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 46px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+footer {
+  width: 100%;
+  padding: 40px 0;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  background-color: #3c4856;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.o-wrap {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.c-btn {
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 14px;
+  -webkit-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
+}
+
+.c-btn:hover {
+  opacity: .8;
+  scale: 1.05;
+}
+
+.c-btn--add {
+  background-color: #64b2fa;
+}
+
+.c-nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.c-nav li {
+  width: 25%;
+  padding: 20px 0;
+  text-align: center;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  -webkit-transition: all .1s ease-in;
+  transition: all .1s ease-in;
+}
+
+.c-nav li:hover {
+  scale: 1.1;
+  border-color: #cecece5d;
+  -webkit-box-shadow: 0px 7px 6px -6px rgba(0, 0, 0, 0.9);
+          box-shadow: 0px 7px 6px -6px rgba(0, 0, 0, 0.9);
+}
+
+.c-nav a {
+  color: #828282;
+  text-decoration: none;
+}
+
+.c-category__info {
+  margin-bottom: 60px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #3c4856;
+}
+
+.c-category__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.c-category__list__item {
+  width: 33.33%;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.c-category__list__item a {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #ffffff;
+  background-color: #d3a55f;
+  border-radius: 5px;
+  -webkit-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
+}
+
+.c-category__list__item a:hover {
+  opacity: .8;
+  scale: 1.2;
 }
 
 .c-popup {

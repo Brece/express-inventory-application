@@ -4,41 +4,35 @@ const Category = require('../models/Category');
 const { body, validationResult } = require('express-validator');
 const async = require('async');
 
-const getCategories = (template) => {
-    return (req, res, next) => {
-        async.parallel(
-            {
-                list_items(callback) {
-                    Item.find({}, 'title')
-                    .exec(callback);
-                },
-                list_categories(callback) {
-                    Category.find()
-                        .sort({ 'name': 'ascending' })
-                        .exec(callback);
-                }
-            },
-            (err, results) => {
-                if (err) {
-                    return next(err);
-                }
-    
-                res.render(template, {
-                    title: 'Category List',
-                    error: err,
-                    category_list: results.list_categories,
-                    item_list: results.list_items,
-                });
-            }
-        );
-    };
-}
 
 // displays all catogories on homepage
-exports.index = getCategories('index');
+exports.index = (req, res, next) => {
+    async.parallel(
+        {
+            list_items(callback) {
+                Item.find({}, 'title')
+                .exec(callback);
+            },
+            list_categories(callback) {
+                Category.find()
+                    .sort({ 'name': 'ascending' })
+                    .exec(callback);
+            }
+        },
+        (err, results) => {
+            if (err) {
+                return next(err);
+            }
 
-// display category list
-exports.category_list = getCategories('category_list');
+            res.render('index', {
+                title: 'Category List',
+                error: err,
+                category_list: results.list_categories,
+                item_list: results.list_items,
+            });
+        }
+    );
+};
 
 // display detail page for a specific category
 // TODO: do I need category_items displayed in the template?
