@@ -7,6 +7,7 @@ const ItemSchema = new Schema({
     productID: { type: Number, default: new Date().getTime(), required: true },
     brand: { type: Schema.Types.ObjectId, ref: 'Brand', required: true },
     category: [{ type: Schema.Types.ObjectId, ref: 'Category', required: true }],
+    image: { data: Buffer, contentType: String, name: String, size: Number },
     protected: { type: Boolean, default: false }
 });
 

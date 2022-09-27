@@ -7,6 +7,10 @@
         <h2><%= brand.name %></h2>
         <p><%= brand.description %></p>
         <p><%= brand.location %></p>
+        <img 
+            src="data:<%= brand.image.contentType %>;base64,
+            <%= brand.image.data.toString('base64') %>"
+            alt="<%= brand.image.name %>">
     </div>
 
     <% if (brand.protected) { -%>

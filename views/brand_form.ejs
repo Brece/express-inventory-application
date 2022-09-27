@@ -10,6 +10,7 @@
         <form
             action="<%= update ? `/brand/${ brand._id }/update` : '/brand/create' %>"
             method="POST"
+            enctype="multipart/form-data"
             class="c-form">
             <div class="c-form__group">
                 <label for="name">Name</label>
@@ -34,6 +35,10 @@
                     required
                     placeholder="e.g. Asia"
                     value="<%= brand ? brand.location : '' %>">
+            </div>
+            <div class="c-form__group">
+                <label for="image">Upload Image</label>
+                <input type="file" id="image" name="image" required>
             </div>
             <button class="c-btn" type="submit">Submit</button>
         </form>

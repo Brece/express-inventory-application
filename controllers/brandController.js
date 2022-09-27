@@ -77,9 +77,9 @@ exports.brand_create_post = [
     // process after validation and sanitization
     (req, res, next) => {
         // extract the validation errors from request
+        console.log(req.file);
         const errors = validationResult(req);
 
-        console.log(errors.array());
         if (!errors.isEmpty()) {
             // there are errors; render form with sanitized input values
             res.render('brand_form', {
@@ -96,6 +96,12 @@ exports.brand_create_post = [
             name: req.body.name,
             description: req.body.description,
             location: req.body.location,
+            image: {
+                name: req.file.originalname,
+                size: req.file.size,
+                data: req.file.buffer,
+                contentType: req.file.mimetype
+            },
         });
 
         brand.save((err) => {
@@ -225,6 +231,12 @@ exports.brand_update_post = [
             name: req.body.name,
             description: req.body.description,
             location: req.body.location,
+            image: {
+                name: req.file.originalname,
+                size: req.file.size,
+                data: req.file.buffer,
+                contentType: req.file.mimetype
+            },
             _id: req.params.id,
         });
 
