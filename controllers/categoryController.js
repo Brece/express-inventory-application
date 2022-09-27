@@ -29,6 +29,7 @@ exports.index = (req, res, next) => {
                 error: err,
                 category_list: results.list_categories,
                 item_list: results.list_items,
+                url: req.url,
             });
         }
     );
@@ -61,6 +62,7 @@ exports.category_detail = (req, res, next) => {
                 title: 'Category Detail',
                 category: results.category,
                 category_items: results.category_items,
+                url: req.url,
             });
         }
     );
@@ -73,6 +75,7 @@ exports.category_create_get = (req, res, next) => {
         update: false,
         category: undefined,
         errors: false,
+        url: req.url,
     });
 }
 
@@ -112,7 +115,8 @@ exports.category_create_post = [
                 title: 'Create Category',
                 category,
                 update: false,
-                errors: errors.array()
+                errors: errors.array(),
+                url: req.url,
             });
             return;
         } else {
@@ -167,6 +171,7 @@ exports.category_delete_get = (req, res, next) => {
                 title: 'Delete Category',
                 category: results.category,
                 category_items: results.category_items,
+                url: req.url,
             });
         }
     );
@@ -195,6 +200,7 @@ exports.category_delete_post = (req, res, next) => {
                     title: 'Delete Category',
                     category: results.category,
                     category_items: results.category_items,
+                    url: req.url,
                 });
                 return;
             }
@@ -230,6 +236,7 @@ exports.category_update_get = (req, res, next) => {
                 category,
                 update: true,
                 errors: false,
+                url: req.url,
             });
         });
 }
@@ -270,6 +277,7 @@ exports.category_update_post = [
                 category,
                 update: true,
                 errors: errors.array(),
+                url: req.url,
             });
             return;
         }

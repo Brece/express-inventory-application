@@ -25,8 +25,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// app.use('/about', (req, res, next) => {
+//   console.log(req);
+//   res.render('about', { url: req.url });
+// });
 app.use('/', catalogRouter);
-app.use('/about', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -41,7 +44,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error', { error: err });
+  res.render('error', { error: err, url: req.url });
 });
 
 module.exports = app;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="/javascripts/index.js" defer></script>
     <title>Inventory Application</title>
@@ -12,22 +12,23 @@
   <body>
 
     <header>
-      <nav class="o-wrap c-nav">
-        <ul>
-          <li>
-            <a href="/">Home</a>
+      <nav class="max-w-4xl mx-auto my-0 text-center c-nav">
+        <ul class="flex">
+          <li class="w-1/4">
+            <a class="pb-4 block font-medium text-white tracking-widest duration-100 hover:shadow-md hover:bg-primary hover:rounded-b hover:pt-8
+            <%= url === '/' ? 'pt-8 bg-primary rounded-b' : 'pt-4 bg-dark' %>" href="/">Home</a>
           </li>
-          <li>
-            <!-- TODO: display all items or even all iteminstances; with filteroptions which lists all categories in a list and link them to the category detail page OR filter shown iteminstances -->
-            <a href="/item">Store</a>
+          <li class="w-1/4">
+            <a class="pb-4 block font-medium text-white tracking-widest duration-100 hover:shadow-md hover:bg-primary hover:rounded-b hover:pt-8
+              <%= url.includes('item') ? 'pt-8 bg-primary rounded-b' : 'pt-4 bg-dark' %>" href="/item">Store</a>
           </li>
-          <li>
-            <!-- TODO: list all brands as an overview like for categories -->
-            <a href="/brand">Brands</a>
+          <li class="w-1/4">
+            <a class="pb-4 block font-medium text-white tracking-widest duration-100 hover:shadow-md hover:bg-primary hover:rounded-b hover:pt-8
+            <%= url.includes('brand') ? 'pt-8 bg-primary rounded-b' : 'pt-4 bg-dark' %>" href="/brand">Brands</a>
           </li>
-          <li>
-            <!-- TODO: create routing; information about what this project is about -->
-            <a href="/about">About</a>
+          <li class="w-1/4">
+            <a class="pb-4 block font-medium text-white tracking-widest duration-100 hover:shadow-md hover:bg-primary hover:rounded-b hover:pt-8
+            <%= url.includes('about') ? 'pt-8 bg-primary rounded-b' : 'pt-4 bg-dark' %>" href="/about">About</a>
           </li>
         </ul>
       </nav>

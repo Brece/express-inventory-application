@@ -17,6 +17,9 @@ const brand_controller = require('../controllers/brandController');
 
 // rendering services
 router.get('/', category_controller.index);
+router.get('/about', (req, res, next) => {
+    res.render('about', { url: req.url });
+});
 
 // API
 // category

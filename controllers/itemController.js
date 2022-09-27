@@ -19,6 +19,7 @@ exports.item_list = (req, res, next) => {
             res.render('item', {
                 title: 'Product List',
                 item_list: list_items,
+                url: req.url,
             });
         });
 }
@@ -53,6 +54,7 @@ exports.item_detail = (req, res, next) => {
                 title: results.item.title,
                 item: results.item,
                 item_instance: results.item_instance,
+                url: req.url,
             });
         }
     );
@@ -81,6 +83,7 @@ exports.item_create_get = (req, res, next) => {
                 update: false,
                 item: undefined,
                 errors: undefined,
+                url: req.url,
             });
         }
     );
@@ -169,6 +172,7 @@ exports.item_create_post = [
                         categories: results.categories,
                         update: false,
                         errors: errors.array(),
+                        url: req.url,
                     });
                 }
             );
@@ -200,6 +204,7 @@ exports.item_create_post = [
 ]
 
 exports.item_delete_get = (req, res, next) => {
+    console.log(req.url);
     async.parallel(
         {
             item(callback) {
@@ -227,6 +232,7 @@ exports.item_delete_get = (req, res, next) => {
                 title: 'Delete Product',
                 item: results.item,
                 iteminstances: results.iteminstances,
+                url: req.url,
             });
         }
     )
@@ -256,6 +262,7 @@ exports.item_delete_post = (req, res, next) => {
                     title: 'Delete Product',
                     item: results.item,
                     iteminstances: results.iteminstances,
+                    url: req.url,
                 });
                 return;
             }
@@ -337,6 +344,7 @@ exports.item_update_get = (req, res, next) => {
                 categories: results.categories,
                 update: true,
                 errors: undefined,
+                url: req.url,
             });
         }
     );
@@ -434,6 +442,7 @@ exports.item_update_post = [
                         categories: results.categories,
                         update: true,
                         errors: errors.array(),
+                        url: req.url,
                     });
                 }
                 );

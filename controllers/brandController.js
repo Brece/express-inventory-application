@@ -15,6 +15,7 @@ exports.brand_list = (req, res, next) => {
             res.render('brand', {
                 title: 'Brand List',
                 brand_list: list_brands,
+                url: req.url,
             });
         });
 }
@@ -45,6 +46,7 @@ exports.brand_detail = (req, res, next) => {
                 title: 'Brand Detail',
                 brand: results.brand,
                 brand_items: results.brand_items,
+                url: req.url,
             });
         }
     );
@@ -56,6 +58,7 @@ exports.brand_create_get = (req, res, next) => {
         update: false,
         errors: false,
         brand: undefined,
+        url: req.url,
     });
 }
 
@@ -85,7 +88,8 @@ exports.brand_create_post = [
                 title: 'Create Brand',
                 brand: req.body,
                 update: false,
-                errors: errors.array()
+                errors: errors.array(),
+                url: req.url,
             });
             return;
         }
@@ -140,6 +144,7 @@ exports.brand_delete_get = (req, res, next) => {
                 title: 'Delete Brand',
                 brand: results.brand,
                 brand_items: results.brand_items,
+                url: req.url,
             });
         }
     );
@@ -168,6 +173,7 @@ exports.brand_delete_post = (req, res, next) => {
                     title: 'Delete Brand',
                     brand: results.brand,
                     brand_items: results.brand_items,
+                    url: req.url,
                 });
                 return;
             }
@@ -201,7 +207,8 @@ exports.brand_update_get = (req, res, next) => {
                 title: 'Update Brand',
                 brand,
                 update: true,
-                errors: false
+                errors: false,
+                url: req.url,
             });
         });
 }
@@ -246,6 +253,7 @@ exports.brand_update_post = [
                 brand,
                 update: true,
                 errors: errors.array(),
+                url: req.url,
             });
             return;
         }

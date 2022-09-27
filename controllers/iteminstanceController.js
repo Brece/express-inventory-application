@@ -36,6 +36,7 @@ exports.iteminstance_detail = (req, res, next) => {
                 in_stock: iteminstance.in_stock,
                 id: iteminstance._id,
                 iteminstance,
+                url: req.url,
             });
         });
 }
@@ -53,6 +54,7 @@ exports.iteminstance_create_get = (req, res, next) => {
                 iteminstance: undefined,
                 update: false,
                 errors: false,
+                url: req.url,
             });
         });
 }
@@ -97,6 +99,7 @@ exports.iteminstance_create_post = [
                         iteminstance,
                         update: false,
                         errors: errors.array(),
+                        url: req.url,
                     });
                 });
             return;
@@ -188,7 +191,8 @@ exports.iteminstance_update_get = (req, res, next) => {
                 iteminstance,
                 item: iteminstance.item,
                 update: true,
-                errors: false
+                errors: false,
+                url: req.url,
             });
         });
 }
@@ -234,6 +238,7 @@ exports.iteminstance_update_post = [
                         iteminstance,
                         update: true,
                         errors: errors.array(),
+                        url: req.url,
                     });
                 });
             return;
