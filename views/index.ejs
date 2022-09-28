@@ -1,17 +1,17 @@
 <%- include('partials/_header' , { url })  %>
 
-<div class="o-wrap c-category">
-    <div class="c-category__info">
-        <h1><%= title %></h1>
+<div class="lg:max-w-4xl lg:mx-auto lg:my-0 mx-3 sm:mx-5 md:mx-10 c-category">
+    <div class="mb-10 pb-5 lg:mb-20 lg:pb-10 border-dark border-b c-category__info">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl mb-5 sm:mb-8 md:mb-10 font-bold"><%= title %></h1>
         <form action="/category/create" method="GET">
             <button type="submit" class="c-btn c-btn--add">Create a new category</button>
         </form>
     </div>
     <% if (category_list.length > 0) { -%>
-        <ul class="c-category__list">
+        <ul class="flex flex-wrap items-center justify-center c-category__list">
             <% category_list.forEach(function (category) { -%>
-                <li class="c-category__list__item">
-                    <a href="/category/<%= category._id %>">
+                <li class="w-1/3 mb-10 text-center c-category__list__item">
+                    <a href="/category/<%= category._id %>" class="inline-block md:py-3 md:px-5 py-2 px-3 rounded-lg bg-primary text-white md:font-bold sm:font-normal md:text-lg sm:text-sm transition-all duration-100 hover:scale-110 hover:opacity-80">
                         <%= category.name %>
                     </a>
                 </li>

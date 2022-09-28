@@ -10,3 +10,29 @@
 * {
     font-family: 'Montserrat', sans-serif;
 }
+
+.c-btn {
+    cursor: pointer;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 14px;
+    transition: all .1s ease-in-out;
+}
+.c-btn:hover {
+    opacity: .8;
+    scale: 1.05;
+}
+.c-btn--add {
+    background-color: #64b2fa;
+}
+
+/* =================== MEDIA QUERIES ===================== */
+
+@media (max-width: 640px) {
+    .c-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}

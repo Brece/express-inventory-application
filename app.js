@@ -6,7 +6,6 @@ const logger = require('morgan');
 const methodOverride = require('method-override');
 
 const catalogRouter = require('./routes/catalog');
-const indexRouter = require('./routes/index');
 
 const app = express();
 
@@ -25,10 +24,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/about', (req, res, next) => {
-//   console.log(req);
-//   res.render('about', { url: req.url });
-// });
 app.use('/', catalogRouter);
 
 // catch 404 and forward to error handler
