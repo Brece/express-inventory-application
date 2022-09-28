@@ -12,6 +12,7 @@
 }
 
 .c-btn {
+    margin-right: 20px;
     cursor: pointer;
     border: none;
     padding: 10px 20px;
@@ -25,7 +26,24 @@
     scale: 1.05;
 }
 .c-btn--add {
+    background-color: #d3a55f;
+}
+.c-btn--update {
     background-color: #64b2fa;
+}
+.c-btn--delete {
+    background-color: #e6575c;
+}
+
+.c-popup.isActive {
+    top: 50%;
+}
+
+.c-overlay.isActive {
+    bottom: 0;
+    z-index: 4;
+    opacity: .5;
+    background-color: #c5c5c5;
 }
 
 /* =================== MEDIA QUERIES ===================== */

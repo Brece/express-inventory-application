@@ -16,7 +16,7 @@
         <ul class="flex">
           <li class="w-1/4">
             <a class="pb-4 block font-medium text-white tracking-widest duration-100 hover:shadow-md hover:bg-primary hover:rounded-b hover:pt-8
-            <%= url === '/' ? 'pt-8 bg-primary rounded-b' : 'pt-4 bg-dark' %>" href="/">Home</a>
+            <%= url === '/' || url.includes('category') ? 'pt-8 bg-primary rounded-b' : 'pt-4 bg-dark' %>" href="/">Home</a>
           </li>
           <li class="w-1/4">
             <a class="pb-4 block font-medium text-white tracking-widest duration-100 hover:shadow-md hover:bg-primary hover:rounded-b hover:pt-8

@@ -1,37 +1,45 @@
 <%- include('partials/_header' , { url })  %>
 
-<div class="o-wrap c-iteminstance">
-    <h1><%= title %></h1>
-    <p><%= description %></p>
-    <p><%= brand %></p>
-    <p><%= size %></p>
-    <p><%= in_stock %></p>
-    <p><%= price %></p>
-    <p><%= productID %></p>
+<div class="lg:max-w-4xl lg:mx-auto lg:my-0 mx-3 sm:mx-5 md:mx-10 c-iteminstance">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl mb-5 sm:mb-8 md:mb-10 font-bold"><%= title %></h1>
+    <div class="flex flex-col sm:flex-row mb-3 sm:mb-5">
+        <img 
+        src="data:<%= iteminstance.item.image.contentType %>;base64,
+        <%= iteminstance.item.image.data.toString('base64') %>"
+        alt="<%= iteminstance.item.image.name %>"
+        class=" mb-3 object-cover object-center max-h-48 sm:max-h-96 sm:w-2/5 md:w-1/2 sm:block">
 
-    <% if (categories.length > 0) { %>
-        <div>
-            <% for (const category of categories) { %>
-                <p><%= category.name %></p>
+        <div class="sm:pl-5 sm:w-3/5 md:w-1/2">
+            <p class="mb-2"><%= description %></p>
+            <p class="mb-2">Brand: <%= brand %></p>
+            <p class="mb-2 font-semibold">Size: <%= size %></p>
+            <p class="mb-2 sm:mb-5 text-danger">In Stock: <%= in_stock %></p>
+            <p class="mb-2 text-dark font-bold">Price: <%= price %>€</p>
+            <p class="mb-2 text-sm font-semibold">Product ID: <%= productID %></p>
+
+            <% if (categories.length > 0) { %>
+                <ul class="flex flex-wrap w-full">
+                    <% for (const category of categories) { %>
+                        <li class="mb-1 mr-3 text-center">
+                            <a href="/category/<%= category._id %>" class="inline-block py-1 px-2 rounded-lg bg-dark text-white font-bold text-xs transition-all duration-100 hover:scale-105 hover:opacity-80"><%= category.name %></a>
+                        </li>
+                    <% } %>
+                    </ul>
             <% } %>
         </div>
-    <% } %>
-
-    <img 
-    src="data:<%= iteminstance.item.image.contentType %>;base64,
-    <%= iteminstance.item.image.data.toString('base64') %>"
-    alt="<%= iteminstance.item.image.name %>">
+    </div>
 
     <% if (iteminstance.protected) { -%>
-        <p>This Document is protected and cannot be changed or deleted.</p>
+        <p class="font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
     <% } else { -%>
-        <input type="hidden" name="iteminstance_id" value="<%= id %>">
-
-        <form action="/iteminstance/<%= id %>/update" method="GET">
-            <button type="submit">Update</button>
-        </form>
-        
-        <button type="button" class="c-btn c-btn--delete c-btn--popup">Delete</button>
+        <div class="flex w-full mb-3 c-iteminstance__btns">
+            <form action="/iteminstance/<%= id %>/update" method="GET">
+                <input type="hidden" name="iteminstance_id" value="<%= id %>">
+                <button type="submit" class="c-btn c-btn--update">Update</button>
+            </form>
+            
+            <button type="button" class="c-btn c-btn--delete c-btn--popup">Delete</button>
+        </div>
     <% } -%>
 </div>
 

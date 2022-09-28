@@ -1,32 +1,36 @@
 <%- include('partials/_header' , { url })  %>
 
 <!-- TODO: rework layout; category details with edit and delete buttons; display lists of items that belong to this category -->
-<div class="o-wrap c-category-detail">
-    <h1><%= title %></h1>
-    <div class="c-category-detail__container">
-        <h2><%= category.name %></h2>
-        <p><%= category.description %></p>
-        <img 
+<div class="lg:max-w-4xl lg:mx-auto lg:my-0 mx-3 sm:mx-5 md:mx-10 c-category-detail">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl mb-5 sm:mb-8 md:mb-10 font-bold"><%= title %></h1>
+    <div class="mb-10 pb-5 lg:mb-20 lg:pb-10 border-dark border-b c-category-detail__container">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-medium mb-3 sm:mb-5"><%= category.name %></h2>
+        <div class="flex mb-3 sm:mb-5">
+            <p class="w-full sm:pr-5 sm:w-3/4 md:w-3/5"><%= category.description %></p>
+            <img 
             src="data:<%= category.image.contentType %>;base64,
             <%= category.image.data.toString('base64') %>"
-            alt="<%= category.image.name %>">
+            alt="<%= category.image.name %>"
+            class="hidden object-cover object-center max-h-48 sm:w-1/4 md:w-2/5 sm:block">
+        </div>
+
+        <% if (category.protected) { -%>
+            <p class="font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
+        <% } else { -%>
+            <div class="flex w-full c-category__btns">
+                <form action="/category/<%= category._id %>/update" method="GET">
+                    <button class="c-btn c-btn--update" type="submit">Update</button>
+                </form>
+                <form action="/category/<%= category._id %>/delete" method="GET">
+                    <button class="c-btn c-btn--delete" type="submit">Delete</button>
+                </form>
+            </div>
+        <% } -%>
     </div>
 
-    <% if (category.protected) { -%>
-        <p>This Document is protected and cannot be changed or deleted.</p>
-    <% } else { -%>
-        <div class="c-category__btns">
-            <form action="/category/<%= category._id %>/update" method="GET">
-                <button class="c-btn" type="submit">Update</button>
-            </form>
-            <form action="/category/<%= category._id %>/delete" method="GET">
-                <button class="c-btn" type="submit">Delete</button>
-            </form>
-        </div>
-    <% } -%>
 
     <% if (category_items.length > 0) { %>
-        <div class="c-category-detail__items">
+        <div class="flex flex-wrap justify-between items-center mb-36 c-category-detail__items">
             <% for (const item of category_items) { %>
                 <%- include('partials/_item_card', { item }) %>
             <% } %>

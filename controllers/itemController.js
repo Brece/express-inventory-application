@@ -51,7 +51,7 @@ exports.item_detail = (req, res, next) => {
 
             // successful, so render
             res.render('item_detail', {
-                title: results.item.title,
+                title: 'Product Detail',
                 item: results.item,
                 item_instance: results.item_instance,
                 url: req.url,

@@ -1,29 +1,28 @@
 <%- include('partials/_header' , { url })  %>
 
 <!-- TODO: rework layout -->
-<div class="o-wrap c-category-delete">
-    <h1><%= title %></h1>
-    <div>
-        <h2><%= category.name %></h2>
-        <p><%= category.description %></p>
+<div class="lg:max-w-4xl lg:mx-auto lg:my-0 mx-3 sm:mx-5 md:mx-10 c-item-detail c-category-delete">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl mb-5 sm:mb-8 md:mb-10 font-bold"><%= title %></h1>
+    <div class="mb-10 pb-5 lg:mb-20 lg:pb-10 border-dark border-b c-category-delete__container">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-medium mb-3 sm:mb-5"><%= category.name %></h2>
+        <p class="mb-3"><%= category.description %></p>
         
         <% if (category.protected) { -%>
-            <p>This Document is protected and cannot be changed or deleted.</p>
+            <p class="font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
         <% } else { -%>
             <form action="/category/<%= category._id  %>/delete" method="POST">
                 <input type="hidden" name="categoryid" value=<%= category._id %>>
-                <button type="submit">Delete</button>
+                <button type="submit" class="c-btn c-btn--delete">Delete</button>
             </form>
         <% } -%>
     </div>
 
     <% if (category_items.length > 0) { -%>
-        <h3>Please delete/edit these products first in order to delete the category:</h3>
-        <ul>
+        <h3 class="font-bold mb-3">Please delete/edit these products first in order to delete the category:</h3>
+        <ul class="flex flex-wrap items-center justify-start c-category__delete__list">
             <% category_items.forEach(function (item) { -%>
-                <li>
-                    <a href="<%= item.url %>"><%= item.title %></a>
-                    <p><%= item.description %></p>
+                <li class="mr-3 mb-5 c-category__delete__list__item">
+                    <a href="<%= item.url %>" class="inline-block md:py-2 md:px-4 py-1 px-2 rounded-lg bg-dark text-white md:font-bold sm:font-normal md:text-lg sm:text-sm transition-all duration-100 hover:scale-110 hover:opacity-80"><%= item.title %></a>
                 </li>
             <% }) %> 
         </ul>

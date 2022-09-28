@@ -11,8 +11,9 @@ module.exports = {
       "border": "#cecece5d",
       "light": "#828282",
       "dark": "#3c4856",
-      "bg": "#a0acbd",
+      "bg": "#c5c5c5",
       "danger": "#e6575c",
+      "danger2": "#820000",
       "white": "#ffffff",
       "black": "#000000",
     }

@@ -1,19 +1,20 @@
 <!-- TODO: item card with picture, name; wrapped in a clickable container that redirects to item instance page  -->
-<div class="c-item-card">
+<div class="w-full sm:w-2/5 mb-5 sm:mb-8 md:mb-10 p-2 shadow-2xl rounded-lg hover:scale-105 transition-all duration-100 c-item-card">
     <a href="<%= item.url %>">
-        <h1><%= item.title %></h1>
-        <p><%= item.description %></p>
+        <h3 class="mb-3 sm:mb-5 sm:text-lg md:text-xl font-semibold"><%= item.title %></h3>
+        <p class="mb-3 sm:mb-5"><%= item.description %></p>
         <img 
             src="data:<%= item.image.contentType %>;base64,
             <%= item.image.data.toString('base64') %>"
-            alt="<%= item.image.name %>">
+            alt="<%= item.image.name %>"
+            class="w-full object-cover object-center max-h-60 block mb-3 sm:mb-5">
     </a>
 
     <% if (item.protected) { -%>
-        <p>This Document is protected and cannot be changed or deleted.</p>
+        <p class="font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
     <% } else { -%>
         <form action="/item/<%= item._id %>/update" method="GET">
-            <button type="submit">Update</button>
+            <button type="submit" class="c-btn c-btn--update">Update</button>
         </form>
     <% } -%>
 </div>

@@ -1,25 +1,26 @@
 <!-- TODO: replace ID -->
 
-<div class="c-popup">
-    <div class="c-popup__close">
+<div class="max-w-md sm:max-w-xs h-80 p-5 absolute z-50 -top-96 left-1/2 -translate-x-2/4 -translate-y-2/4 transition-all duration-1000 bg-white rounded-lg border-2 border-dark c-popup">
+    <div class="absolute -right-5 -top-5 text-3xl text-danger cursor-pointer transition-colors duration-100 hover:text-danger2 c-popup__close">
         <i class="fa-sharp fa-solid fa-circle-xmark"></i>
     </div>
     <% if (document.protected) { -%>
         <form action="/api<%= document.url %>/delete" method="POST">
-            <div>
+            <div class="c-form__group">
                 <label for="admin">Please type in Admin Password:</label>
                 <input type="password" name="admin" id="admin" />
                 <input type="hidden" name="documentid" value="<%= document._id %>">
             </div>
-            <button type="submit">Delete</button>
+            <button type="submit" class="c-btn c-btn--delete">Delete</button>
         </form>
     <% } else { -%>
         <form action="<%= document.url %>/delete" method="POST">
             <input type="hidden" name="documentid" value="<%= document._id %>">
-            <p>Are You sure you want to delete this item?</p>
-            <button type="submit">Delete</button>
+            <p class="mb-3 font-medium text-danger">Are You sure you want to delete this item?</p>
+            <button type="submit" class="c-btn c-btn--delete">Delete</button>
         </form>
     <% } -%>
+    
 </div>
 
-<div class="c-overlay"></div>
+<div class="absolute -z-50 top-0 left-0 right-0 opacity-0 c-overlay"></div>
