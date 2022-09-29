@@ -2,18 +2,18 @@
 <!-- TODO: implement select options and checkboxes; link brand and category form for new creation 
 implement checked brand option
 -->
-<div>
+<div class="lg:w-full lg:max-w-4xl lg:mx-auto lg:my-0 mx-3 sm:mx-5 md:mx-10 c-brand-form">
     <% if ( iteminstance === undefined ? false : iteminstance.protected) { -%>
         <p class="mb-3 font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
     <% } -%>
 
     <% if (iteminstance === undefined ? true : !iteminstance.protected) { -%>
-        <h1><%= title %></h1>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl mb-5 sm:mb-8 md:mb-10 font-bold"><%= title %></h1>
         <form
             action="<%= update ? `/iteminstance/${ iteminstance._id }/update` : '/iteminstance/create' %>"
             method="POST"
             enctype="multipart/form-data"
-            class="c-form">
+            class="mb-10 c-form">
             <input type="hidden" name="itemid" value="<%= item._id %>">
             <input type="hidden" name="iteminstanceid" value="<%= iteminstance ? iteminstance._id : '' %>">
             <div class="c-form__group">
@@ -34,7 +34,7 @@ implement checked brand option
                 <label for="in_stock">In Stock</label>
                 <input type="number" id="in_stock" required name="in_stock" value="<%= iteminstance ? iteminstance.in_stock : '' %>" min="1" max="99" required />
             </div>
-            <button class="c-btn" type="submit">Submit</button>
+            <button class="c-btn c-btn--add" type="submit">Submit</button>
         </form>
     <% } -%>
 </div>

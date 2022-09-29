@@ -2,20 +2,20 @@
 <!-- TODO: implement select options and checkboxes; link brand and category form for new creation 
 implement checked brand option
 -->
-<div>
+<div class="lg:w-full lg:max-w-4xl lg:mx-auto lg:my-0 mx-3 sm:mx-5 md:mx-10 c-category-form">
     <% if ( item === undefined ? false : item.protected) { -%>
         <p class="mb-3 font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
     <% } -%>
 
     <% if (item === undefined ? true : !item.protected) { -%>
-        <h1><%= title %></h1>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl mb-5 sm:mb-8 md:mb-10 font-bold"><%= title %></h1>
         <form
             action="<%= update ? `/item/${ item._id }/update` : '/item/create' %>"
             method="POST"
             enctype="multipart/form-data"
-            class="c-form">
+            class="mb-10 c-form">
             <div>
-                <p>If the desired <strong>Brand</strong> or <strong>Category</strong> does not exist then please create those first.</p>
+                <p class="mb-3">If the desired <a href="/brand/create" class="font-bold text-primary">Brand</a> or <a href="/category/create" class="font-bold text-primary">Category</a> does not exist then please create those first.</p>
             </div>
             <div class="c-form__group">
                 <label for="title">Title</label>
@@ -29,7 +29,9 @@ implement checked brand option
             </div>
             <div class="c-form__group">
                 <label for="description">Description</label>
-                <textarea type="text" id="description" required name="description" rows="5" cols="33"><%= item ? item.description : '' %></textarea>
+                <textarea type="text" id="description" required name="description">
+                    <%= item ? item.description : '' %>
+                </textarea>
             </div>
             <div class="c-form__group">
                 <label for="productID">ProductID</label>
@@ -56,26 +58,30 @@ implement checked brand option
                     <% } %> 
                 </select>
             </div>
-            <div class="c-form-group">
+            <div class="c-form__group">
                 <label>Category</label>
-                <% if (categories.length > 0)  { %> 
-                    <% categories.forEach((category) => { %>
-                        <input
-                        type="checkbox"
-                        id="<%= category.name %>"
-                        name="category"
-                        value="<%= category._id %>"
-                        <%= category.checked ? 'checked' : '' %>
-                        >
-                        <label for="<%= category.name %>"><%= category.name %></label>
-                    <% }) %>
+                <% if (categories.length > 0)  { %>
+                    <div class="c-form__group__checkbox">
+                        <% categories.forEach((category) => { %>
+                            <div class="c-form__group__checkbox__wrapper">
+                                <input
+                                type="checkbox"
+                                id="<%= category.name %>"
+                                name="category"
+                                value="<%= category._id %>"
+                                <%= category.checked ? 'checked' : '' %>
+                                >
+                                <label for="<%= category.name %>"><%= category.name %></label>
+                            </div>
+                        <% }) %>
+                    </div>
                 <% } %> 
             </div>
             <div class="c-form__group">
                 <label for="image">Upload Image (< 300kb)</label>
                 <input type="file" id="image" name="image" required>
             </div>
-            <button class="c-btn" type="submit">Submit</button>
+            <button class="c-btn c-btn--add" type="submit">Submit</button>
         </form>
     <% } -%>
 </div>
