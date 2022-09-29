@@ -2,8 +2,15 @@
 
 <!-- TODO: some information about this project-->
 <div class="mb-10 lg:w-full lg:max-w-4xl lg:mx-auto lg:my-0 mx-3 sm:mx-5 md:mx-10 c-about">
-    <h1 class="text-3xl sm:text-4xl md:text-5xl mb-5 sm:mb-8 md:mb-10 font-bold">About this project</h1>
-    <p>xxxx</p>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl mb-5 sm:mb-8 md:mb-10 font-bold c-about">About this project</h1>
+
+    <p class="mb-3">This project is part of TheOdinProject. The goal is to learn more about the backend and how to display the requested data from a database in the client's browser window.</p>
+
+    <p class="mb-3">To achieve this I used <strong>NodeJS</strong> and <strong>Express</strong> for the backend, <strong>MongoDB (NoSQL)</strong> for the database, <strong>EJS</strong> as the view engine and <strong>TailwindCSS</strong> to display the content in the frontend.</p>
+
+    <p class="mb-3">This <strong>CRUD</strong> application mimics an inventory store where the user can add/update/delete documents like category, brand, item and item instances. Because of the lack of user authentication in order to protect private documents I've added the boolean property "protected" which limits available options to interact with those documents. Even if the user tries to access areas via the URL that are otherwise not available the options to update/delete are disabled.</p>
+
+    <p class="mb-3">You can see more of my projects on my <a href="https://www.nuiruppert.com/" class="text-secondary">website</a> or visit me on <a href="https://github.com/Brece" class="text-secondary">Github</a>.</p>
 </div>
 
 <%- include('partials/_footer')  %>

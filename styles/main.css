@@ -81,6 +81,10 @@
     background-color: #ffffff;
 }
 
+.c-about strong {
+    color: #d3a55f;
+}
+
 /* =================== MEDIA QUERIES ===================== */
 
 @media (max-width: 640px) {
