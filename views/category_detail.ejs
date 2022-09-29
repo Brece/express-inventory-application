@@ -15,7 +15,7 @@
         </div>
 
         <% if (category.protected) { -%>
-            <p class="font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
+            <p class="mb-3 font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
         <% } else { -%>
             <div class="flex w-full c-category__btns">
                 <form action="/category/<%= category._id %>/update" method="GET">
@@ -30,7 +30,7 @@
 
 
     <% if (category_items.length > 0) { %>
-        <div class="flex flex-wrap justify-between items-center mb-36 c-category-detail__items">
+        <div class="flex flex-wrap justify-between items-start mb-36 c-category-detail__items">
             <% for (const item of category_items) { %>
                 <%- include('partials/_item_card', { item }) %>
             <% } %>

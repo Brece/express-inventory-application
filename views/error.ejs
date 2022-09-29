@@ -1,8 +1,8 @@
 <%- include('partials/_header' , { url })  %>
 
-<div class="c-error">
-  <h1><%- error.message %></h1>
-  <h2><%- error.status %></h2>
+<div class="lg:max-w-4xl lg:mx-auto lg:my-0 mx-3 sm:mx-5 md:mx-10 c-error">
+  <h1 class="text-3xl sm:text-4xl md:text-5xl mb-5 sm:mb-8 md:mb-10 font-bold text-danger"><%- error.status %></h1>
+  <p class="mb-3"><%- error.message %></p>
   <pre><%- error.stack %></pre>
 </div>
 

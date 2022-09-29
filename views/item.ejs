@@ -1,33 +1,21 @@
 <%- include('partials/_header' , { url })  %>
 
-<div class="o-wrap c-item">
-    <h1><%= title %></h1>
-    
-    <form action="/item/create" method="GET">
-        <button type="submit">Create a new Product</button>
-    </form>
+<div class="lg:max-w-4xl lg:mx-auto lg:my-0 mx-3 sm:mx-5 md:mx-10 c-item">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl mb-5 sm:mb-8 md:mb-10 font-bold"><%= title %></h1>
+    <div class="mb-10 pb-5 lg:mb-20 lg:pb-10 border-dark border-b c-item__container">
+        <form action="/item/create" method="GET">
+            <button type="submit" class="c-btn c-btn--add">Create a new Product</button>
+        </form>
+    </div>
 
-    <% if (item_list.length > 0) { -%>
-        <ul>
-            <% item_list.forEach(function (item) { -%>
-                <li>
-                    <a href="/item/<%= item._id %>">
-                        <!-- TODO: product image -->
-                        <h3><%= item.title %></h3>
-                        <p><%= item.brand.name %></p>
-                        <div>
-                            <p>Categories:</p>
-                            <ul>
-                                <% item.category.forEach(function (category) { %>
-                                    <li><%= category.name %></li>
-                                <% }) %>
-                            </ul>
-                        </div>
-                    </a>
-                </li>
-            <% }) %> 
-        </ul>
-    <% } -%>
+
+    <% if (item_list.length > 0) { %>
+        <div class="flex flex-wrap justify-between items-start mb-36 c-item-detail__items">
+            <% for (const item of item_list) { %>
+                <%- include('partials/_item_card', { item }) %>
+            <% } %>
+        </div>
+    <% } %>
 </div>
 
 <%- include('partials/_footer') %> 

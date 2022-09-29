@@ -2,7 +2,7 @@
 
 <div>
     <% if ( category === undefined ? false : category.protected) { -%>
-        <p>This Document is protected and cannot be changed or deleted.</p>
+        <p class="mb-3 font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
     <% } -%>
 
     <% if (category === undefined ? true : !category.protected) { -%>

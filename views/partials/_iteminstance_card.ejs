@@ -12,7 +12,7 @@
     </a>
 
     <% if (iteminstance.protected) { -%>
-        <p class="font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
+        <p class="mb-3 font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
     <% } else { -%>
         <form action="/iteminstance/<%= iteminstance._id %>/update" method="GET">
             <button type="submit" class="c-btn c-btn--update">Update</button>

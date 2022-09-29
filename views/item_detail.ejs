@@ -30,7 +30,7 @@
         </div>
             
             <% if (item.protected) { -%>
-                <p class="font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
+                <p class="mb-3 font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
             <% } else { -%>
                 <div class="flex w-full mb-3 c-item__btns">
                     <form action="/item/<%= item._id %>/update" method="GET">

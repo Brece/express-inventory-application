@@ -4,7 +4,7 @@ implement checked brand option
 -->
 <div>
     <% if ( iteminstance === undefined ? false : iteminstance.protected) { -%>
-        <p>This Document is protected and cannot be changed or deleted.</p>
+        <p class="mb-3 font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
     <% } -%>
 
     <% if (iteminstance === undefined ? true : !iteminstance.protected) { -%>

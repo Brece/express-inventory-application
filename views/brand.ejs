@@ -1,19 +1,21 @@
 <%- include('partials/_header' , { url })  %>
 
-<div class="o-wrap c-brand">
-    <h1><%= title %></h1>
-    
-    <form action="/brand/create" method="GET">
-        <button type="submit">Create a new brand</button>
-    </form>
+<div class="lg:max-w-4xl lg:mx-auto lg:my-0 mx-3 sm:mx-5 md:mx-10 c-brand">
+    <div class="mb-10 pb-5 lg:mb-20 lg:pb-10 border-dark border-b c-brand__info">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl mb-5 sm:mb-8 md:mb-10 font-bold"><%= title %></h1>
+        
+        <form action="/brand/create" method="GET">
+            <button type="submit" class="c-btn c-btn--add">Create a new brand</button>
+        </form>
+    </div>
 
     <% if (brand_list.length > 0) { -%>
-        <ul>
+        <ul class="flex flex-wrap items-center justify-start c-brand__list">
             <% brand_list.forEach(function (brand) { -%>
-                <li>
-                    <a href="/brand/<%= brand._id %>">
-                        <h3><%= brand.name %></h3>
-                        <p><%= brand.description %></p>
+                <li class="mr-3 mb-5 c-brand__list__item">
+                    <a href="/brand/<%= brand._id %>"
+                        class="inline-block md:py-2 md:px-4 py-1 px-2 rounded-lg bg-secondary text-white md:font-bold sm:font-normal md:text-lg sm:text-sm transition-all duration-100 hover:scale-110 hover:opacity-80">
+                        <%= brand.name %>
                     </a>
                 </li>
             <% }) %> 

@@ -742,6 +742,10 @@ video {
   flex-wrap: wrap;
 }
 
+.items-start {
+  align-items: flex-start;
+}
+
 .items-center {
   align-items: center;
 }
@@ -1022,11 +1026,6 @@ video {
 
 .hover\:pt-8:hover {
   padding-top: 2rem;
-}
-
-.hover\:text-primary:hover {
-  --tw-text-opacity: 1;
-  color: rgb(211 165 95 / var(--tw-text-opacity));
 }
 
 .hover\:text-danger2:hover {

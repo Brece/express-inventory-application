@@ -16,7 +16,7 @@
         </div>
 
         <% if (brand.protected) { -%>
-            <p class="font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
+            <p class="mb-3 font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
         <% } else { -%>
             <div class="flex w-full c-brand__btns">
                 <form action="/brand/<%= brand._id %>/update" method="GET">
@@ -30,7 +30,7 @@
     </div>
 
     <% if (brand_items.length > 0) { %>
-        <div class="flex flex-wrap justify-between items-center mb-36 c-brand-detail__items">
+        <div class="flex flex-wrap justify-between items-start mb-36 c-brand-detail__items">
             <% for (const item of brand_items) { %>
                 <%- include('partials/_item_card', { item }) %>
             <% } %>

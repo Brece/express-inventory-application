@@ -8,7 +8,7 @@
         <p class="mb-3"><%= category.description %></p>
         
         <% if (category.protected) { -%>
-            <p class="font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
+            <p class="mb-3 font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
         <% } else { -%>
             <form action="/category/<%= category._id  %>/delete" method="POST">
                 <input type="hidden" name="categoryid" value=<%= category._id %>>
@@ -22,7 +22,9 @@
         <ul class="flex flex-wrap items-center justify-start c-category__delete__list">
             <% category_items.forEach(function (item) { -%>
                 <li class="mr-3 mb-5 c-category__delete__list__item">
-                    <a href="<%= item.url %>" class="inline-block md:py-2 md:px-4 py-1 px-2 rounded-lg bg-dark text-white md:font-bold sm:font-normal md:text-lg sm:text-sm transition-all duration-100 hover:scale-110 hover:opacity-80"><%= item.title %></a>
+                    <a href="<%= item.url %>" class="inline-block md:py-2 md:px-4 py-1 px-2 rounded-lg bg-dark text-white md:font-bold sm:font-normal md:text-lg sm:text-sm transition-all duration-100 hover:scale-110 hover:opacity-80">
+                        <%= item.title %>
+                    </a>
                 </li>
             <% }) %> 
         </ul>
