@@ -19,14 +19,12 @@
                     id="name"
                     name="name"
                     required
-                    placeholder="e.g. Electronics"
+                    placeholder="e.g. Socks"
                     value="<%= category ? category.name : '' %>">
             </div>
             <div class="c-form__group">
                 <label for="description">Description</label>
-                <textarea type="text" id="description" required name="description">
-                    <%= category ? category.description : '' %>
-                </textarea>
+                <textarea type="text" id="description" required name="description"><%= category ? category.description : '' %></textarea>
             </div>
             <div class="c-form__group">
                 <label for="image">Upload Image (< 300kb)</label>

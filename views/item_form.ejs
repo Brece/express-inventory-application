@@ -1,7 +1,5 @@
 <%- include('partials/_header' , { url })  %>
-<!-- TODO: implement select options and checkboxes; link brand and category form for new creation 
-implement checked brand option
--->
+
 <div class="mb-10 lg:w-full lg:max-w-4xl lg:mx-auto lg:my-0 mx-3 sm:mx-5 md:mx-10 c-category-form">
     <% if ( item === undefined ? false : item.protected) { -%>
         <p class="mb-3 font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
@@ -29,9 +27,7 @@ implement checked brand option
             </div>
             <div class="c-form__group">
                 <label for="description">Description</label>
-                <textarea type="text" id="description" required name="description">
-                    <%= item ? item.description : '' %>
-                </textarea>
+                <textarea type="text" id="description" required name="description"><%= item ? item.description : '' %></textarea>
             </div>
             <div class="c-form__group">
                 <label for="productID">ProductID</label>

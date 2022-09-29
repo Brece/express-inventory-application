@@ -1,7 +1,5 @@
 <%- include('partials/_header' , { url })  %>
-<!-- TODO: implement select options and checkboxes; link brand and category form for new creation 
-implement checked brand option
--->
+
 <div class="mb-10 lg:w-full lg:max-w-4xl lg:mx-auto lg:my-0 mx-3 sm:mx-5 md:mx-10 c-brand-form">
     <% if ( iteminstance === undefined ? false : iteminstance.protected) { -%>
         <p class="mb-3 font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
@@ -12,7 +10,6 @@ implement checked brand option
         <form
             action="<%= update ? `/iteminstance/${ iteminstance._id }/update` : '/iteminstance/create' %>"
             method="POST"
-            enctype="multipart/form-data"
             class="mb-10 c-form">
             <input type="hidden" name="itemid" value="<%= item._id %>">
             <input type="hidden" name="iteminstanceid" value="<%= iteminstance ? iteminstance._id : '' %>">
@@ -28,11 +25,11 @@ implement checked brand option
             </div>
             <div class="c-form__group">
                 <label for="price">Price</label>
-                <input type="text" id="price" required name="price" value="<%= iteminstance ? iteminstance.price : '' %>" pattern="^\d+(,\d{1,2})?$" placeholder="Format: 1,23" required />
+                <input type="text" id="price" required name="price" value="<%= iteminstance ? iteminstance.price : '' %>" pattern="^\d+(,\d{1,2})?$" placeholder="Format: 1,23" required>
             </div>
             <div class="c-form__group">
                 <label for="in_stock">In Stock</label>
-                <input type="number" id="in_stock" required name="in_stock" value="<%= iteminstance ? iteminstance.in_stock : '' %>" min="1" max="99" required />
+                <input type="number" id="in_stock" required name="in_stock" value="<%= iteminstance ? iteminstance.in_stock : '' %>" min="1" max="99" required>
             </div>
             <button class="c-btn c-btn--add" type="submit">Submit</button>
         </form>

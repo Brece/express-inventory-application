@@ -36,7 +36,6 @@ exports.index = (req, res, next) => {
 };
 
 // display detail page for a specific category
-// TODO: do I need category_items displayed in the template?
 exports.category_detail = (req, res, next) => {
     async.parallel(
         {

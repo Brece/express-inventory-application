@@ -204,7 +204,6 @@ exports.item_create_post = [
 ]
 
 exports.item_delete_get = (req, res, next) => {
-    console.log(req.url);
     async.parallel(
         {
             item(callback) {
@@ -416,7 +415,6 @@ exports.item_update_post = [
                     }
                 },
                 (err, results) => {
-                    console.log(results.categories);
                     if (err) {
                         next(err);
                     }

@@ -19,14 +19,12 @@
                     id="name"
                     name="name"
                     required
-                    placeholder="e.g. Electronics"
+                    placeholder="e.g. Le Cost"
                     value="<%= brand ? brand.name : '' %>">
             </div>
             <div class="c-form__group">
                 <label for="description">Description</label>
-                <textarea type="text" id="description" required name="description">
-                    <%= brand ? brand.description : '' %>
-                </textarea>
+                <textarea type="text" id="description" required name="description"><%= brand ? brand.description : '' %></textarea>
             </div>
             <div class="c-form__group">
                 <label for="location">Location</label>
