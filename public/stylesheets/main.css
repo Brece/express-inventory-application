@@ -638,6 +638,10 @@ video {
   margin-top: auto;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .block {
   display: block;
 }
@@ -776,10 +780,6 @@ video {
      object-position: center;
 }
 
-.p-2 {
-  padding: 0.5rem;
-}
-
 .p-5 {
   padding: 1.25rem;
 }
@@ -797,6 +797,11 @@ video {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .pb-5 {
@@ -863,6 +868,11 @@ video {
   letter-spacing: 0.1em;
 }
 
+.text-danger {
+  --tw-text-opacity: 1;
+  color: rgb(230 87 92 / var(--tw-text-opacity));
+}
+
 .text-secondary {
   --tw-text-opacity: 1;
   color: rgb(100 178 250 / var(--tw-text-opacity));
@@ -871,11 +881,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-danger {
-  --tw-text-opacity: 1;
-  color: rgb(230 87 92 / var(--tw-text-opacity));
 }
 
 .text-primary {
@@ -985,11 +990,13 @@ video {
 .c-form__group input[type=text],
 .c-form__group input[type=password],
 .c-form__group input[type=number],
+.c-form__group input[type=password],
 .c-form__group select,
 .c-form__group textarea {
   padding: 0.25rem;
   outline: 1px solid #828282;
   border-radius: 3px;
+  background-color: #ffffff;
 }
 
 .c-form__group__checkbox {
@@ -1006,10 +1013,6 @@ video {
   font-weight: normal;
 }
 
-.c-form__group__checkbox__wrapper select {
-  background-color: #ffffff;
-}
-
 .c-about strong {
   color: #d3a55f;
 }
@@ -1020,6 +1023,12 @@ video {
   .c-btn {
     padding: 5px 10px;
     font-size: 12px;
+  }
+}
+
+@media (min-width: 640px) {
+  .c-item-card, .c-iteminstance-card {
+    width: 47%;
   }
 }
 

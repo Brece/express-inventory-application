@@ -60,11 +60,13 @@
 .c-form__group input[type=text],
 .c-form__group input[type=password],
 .c-form__group input[type=number],
+.c-form__group input[type=password],
 .c-form__group select,
 .c-form__group textarea {
     padding: 0.25rem;
     outline: 1px solid #828282;
     border-radius: 3px;
+    background-color: #ffffff;
 }
 .c-form__group__checkbox {
     display: flex;
@@ -77,9 +79,6 @@
 .c-form__group__checkbox__wrapper label {
     font-weight: normal;
 }
-.c-form__group__checkbox__wrapper select {
-    background-color: #ffffff;
-}
 
 .c-about strong {
     color: #d3a55f;
@@ -91,5 +90,11 @@
     .c-btn {
         padding: 5px 10px;
         font-size: 12px;
+    }
+}
+
+@media (min-width: 640px) {
+    .c-item-card, .c-iteminstance-card {
+        width: 47%;
     }
 }
