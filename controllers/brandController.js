@@ -166,26 +166,31 @@ exports.brand_delete_post = (req, res, next) => {
                 return next(err);
             }
 
-            // success
-            if (results.brand_items.length > 0) {
-                // brand has items; render in the same way as for GET route
-                res.render('brand_delete', {
-                    title: 'Delete Brand',
-                    brand: results.brand,
-                    brand_items: results.brand_items,
-                    url: req.url,
-                });
-                return;
-            }
-
-            // brand has no items; delete and redirect
-            Brand.findByIdAndRemove(req.body.brandid, (err) => {
-                if (err) {
-                    return next(err);
+            // security to protect private documents from HTML hacks
+            if (!results.brand.protected) {
+                // success
+                if (results.brand_items.length > 0) {
+                    // brand has items; render in the same way as for GET route
+                    res.render('brand_delete', {
+                        title: 'Delete Brand',
+                        brand: results.brand,
+                        brand_items: results.brand_items,
+                        url: req.url,
+                    });
+                    return;
                 }
-
-                res.redirect('/brand');
-            });
+                
+                // brand has no items; delete and redirect
+                Brand.findByIdAndRemove(req.body.brandid, (err) => {
+                    if (err) {
+                        return next(err);
+                    }
+                    
+                    res.redirect('/brand');
+                });
+            } else {
+                res.redirect(results.brand.url);
+            }
         }
     );
 }

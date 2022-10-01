@@ -16,7 +16,7 @@
         <% if (category.protected) { -%>
             <p class="mb-3 font-medium text-danger text-sm">This Document is protected and cannot be changed or deleted.</p>
         <% } else { -%>
-            <div class="flex w-full c-category__btns">
+            <div class="flex w-full mb-3 c-category__btns">
                 <form action="/category/<%= category._id %>/update" method="GET">
                     <button class="c-btn c-btn--update" type="submit">Update</button>
                 </form>
@@ -25,6 +25,9 @@
                 </form>
             </div>
         <% } -%>
+        <form action="/" method="GET" class="w-full text-right mb-3">
+            <button type="submit" class="c-btn c-btn--return"><i class="mr-2 fa-solid fa-chevron-left"></i>All Categories</button>
+        </form>
     </div>
 
 

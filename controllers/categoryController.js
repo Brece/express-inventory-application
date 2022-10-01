@@ -192,26 +192,31 @@ exports.category_delete_post = (req, res, next) => {
                 return next(err);
             }
 
-            // success
-            if (results.category_items.length > 0) {
-                // category has items; render in the same way as for GET route
-                res.render('category_delete', {
-                    title: 'Delete Category',
-                    category: results.category,
-                    category_items: results.category_items,
-                    url: req.url,
-                });
-                return;
-            }
-
-            // category has no items; delete object and redirect to the list of categories (index page)
-            Category.findByIdAndRemove(req.body.categoryid, (err) => {
-                if (err) {
-                    return next(err);
+            // security to protect private documents from HTML hacks
+            if (!results.category.protected) {
+                // success
+                if (results.category_items.length > 0) {
+                    // category has items; render in the same way as for GET route
+                    res.render('category_delete', {
+                        title: 'Delete Category',
+                        category: results.category,
+                        category_items: results.category_items,
+                        url: req.url,
+                    });
+                    return;
                 }
-
-                res.redirect('/');
-            });
+                
+                // category has no items; delete object and redirect to the list of categories (index page)
+                Category.findByIdAndRemove(req.body.categoryid, (err) => {
+                    if (err) {
+                        return next(err);
+                    }
+                    
+                    res.redirect('/');
+                });
+            } else {
+                res.redirect(results.category.url);
+            }
         }
     );
 }

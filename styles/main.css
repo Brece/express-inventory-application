@@ -34,6 +34,10 @@
 .c-btn--delete {
     background-color: #e6575c;
 }
+.c-btn--return {
+    margin-right: 0;
+    background-color: #828282;
+}
 
 .c-popup.isActive {
     top: 50%;

@@ -159,14 +159,19 @@ exports.iteminstance_delete_post = (req, res, next) => {
                     return next(err);
                 }
 
-                // success; delete document
-                ItemInstance.findByIdAndRemove(req.body.documentid, (err) => {
-                    if (err) {
-                        return next(err);
-                    }
-                    
-                    res.redirect(item_instance.item.url);
-                });
+                // security to protect private documents from HTML hacks
+                if (!item_instance.protected) {
+                    // success; delete document
+                    ItemInstance.findByIdAndRemove(req.body.documentid, (err) => {
+                        if (err) {
+                            return next(err);
+                        }
+                        
+                        res.redirect(item_instance.item.url);
+                    });
+                } else {
+                    res.redirect(item_instance.url);
+                }
         });
 }
 

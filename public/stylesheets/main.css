@@ -630,6 +630,10 @@ video {
   margin-bottom: 9rem;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -828,6 +832,10 @@ video {
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -961,6 +969,11 @@ video {
 
 .c-btn--delete {
   background-color: #e6575c;
+}
+
+.c-btn--return {
+  margin-right: 0;
+  background-color: #828282;
 }
 
 .c-popup.isActive {

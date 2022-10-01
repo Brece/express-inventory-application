@@ -255,39 +255,45 @@ exports.item_delete_post = (req, res, next) => {
                 return next(err);
             }
 
-            if (results.iteminstances.length > 0) {
-                // iteminstances exist; render the same way as fot GET route
-                res.render('item_delete', {
-                    title: 'Delete Product',
-                    item: results.item,
-                    iteminstances: results.iteminstances,
-                    url: req.url,
-                });
-                return;
-            }
+            // security to protect private documents from HTML hacks
+            if (!results.item.protected) {
 
-            // no instances; delete item and redirect to the item list
-            Item.findByIdAndRemove(req.body.itemid, (err) => {
-                if (err) {
-                    return next(err);
+                if (results.iteminstances.length > 0) {
+                    // iteminstances exist; render the same way as fot GET route
+                    res.render('item_delete', {
+                        title: 'Delete Product',
+                        item: results.item,
+                        iteminstances: results.iteminstances,
+                        url: req.url,
+                    });
+                    return;
                 }
-
-                /*
-                * item_count feature removed
-                // decrement category item_count
-                results.item.category.forEach((categoryID) => {
-                    Category.findOneAndUpdate({ _id: categoryID }, { $inc: { 'item_count': -1 }})
+                
+                // no instances; delete item and redirect to the item list
+                Item.findByIdAndRemove(req.body.itemid, (err) => {
+                    if (err) {
+                        return next(err);
+                    }
+                    
+                    /*
+                    * item_count feature removed
+                    // decrement category item_count
+                    results.item.category.forEach((categoryID) => {
+                        Category.findOneAndUpdate({ _id: categoryID }, { $inc: { 'item_count': -1 }})
                         .exec((err) => {
                             if (err) {
                                 return next(err);
                             }
                         });
-                });
-                */
+                    });
+                    */
 
-                // success
-                res.redirect('/item');
-            });
+                   // success
+                    res.redirect('/item');
+                });
+            } else {
+                res.redirect(results.item.url);
+            }
         }
     );
 }

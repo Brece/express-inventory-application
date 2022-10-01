@@ -13,6 +13,11 @@ Use this command to start the Dev-Server:
 npm run serverstart
 ```
 
+Start TailwindCSS watcher:
+```
+npm run tailwind
+```
+
 ## Project setup
 ```
 npm install
