@@ -6,7 +6,7 @@ To achieve this I used **NodeJS** and **Express** for the backend, **MongoDB (No
 This **CRUD** application mimics an inventory store where the user can add/update/delete documents like category, brand, item and item instances. Because of the lack of user authentication in order to protect private documents I've added the boolean property *"protected"* which limits available options to interact with those documents. Even if the user tries to access areas via the URL that are otherwise not available the options to update/delete are disabled.
 
 
-**LIVE version** [here](https://express-inventory-app-odin.herokuapp.com/)
+**LIVE version** [here]()
 
 Use this command to start the Dev-Server:
 ```
@@ -21,9 +21,4 @@ npm run tailwind
 ## Project setup
 ```
 npm install
-```
-
-### Compiles and minifies for production
-```
-npm run build
 ```
